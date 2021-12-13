@@ -1,0 +1,7 @@
+echo "# aula2-grupoe-team-2e" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/pgCatamarca2021fs/aula2-grupoe-team-2e.git
+git push -u origin main
