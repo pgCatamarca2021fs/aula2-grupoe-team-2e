@@ -1,0 +1,80 @@
+header img{
+    border-radius: 10px;
+    height: 55vh;
+    display:block;
+    margin:auto; 
+    background-size: cover;
+}
+
+.img-fluid{
+    max-width: 100%;
+    height:auto;
+}
+
+.banner-right>div>div>p{
+    color: #000;
+}
+
+.cajafuerte{
+    max-height: 75%;
+    position: relative;
+    right: 80px;
+    top: 20px;
+}
+
+@media (max-width: 991px) {
+    .cajafuerte{
+        max-height: 75%;
+        position: relative;
+        right: 0;
+        top: 0;
+    }
+}
+
+#text{
+    display: flex;
+    align-items: center;
+}
+
+#parrafo{
+    font-size: 30px;
+}
+
+
+/* .contenedor{
+    background-color: seagreen;
+    padding: 30px;
+    margin: 10px;
+    border: 20px;
+    border-radius: 15px;
+} */
+
+h1{
+    font-size: 130px;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.parrafo{
+    background-color: springgreen;
+    margin: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.parrafo >h3 {
+    
+}
+
+.container-fluid{
+    /* background-color: teal; */
+    /* color: wheat; */
+    text-align: center;
+}
+
+.card > img{
+    height: 250px;
+}
+
