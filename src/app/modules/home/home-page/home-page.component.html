@@ -19,6 +19,81 @@
     </div>
 </header>
 <!-- fin del titulo  -->
+<!-- Banner-->
+<div id="carousel-texto" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carousel-texto" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carousel-texto" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carousel-texto" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../../../../assets/img/carrusel/Baner-bienbenidos.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+            <div class="carousel-caption d-none d-md-block">  
+
+                <div class="row">
+                <div class="col-4" *ngFor="let coin of coins">
+                    <div class="card" style="width: 13rem;">
+                        <div class="card-body">
+                          <h5 class="card-title text-muted">{{coin.name}}</h5>
+                          <p class="text-dark"> {{coin.current_price}}:USD</p>
+                          <img [src]="coin.image" class="rounded-circle" [alt]="coin.name"style="width: 5rem;">
+                          
+                         
+                        </div>
+                      </div>
+                </div>
+                </div>
+                </div>
+                
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../../../../assets/img/carrusel/banner-transparente.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+            <div class="carousel-caption d-none d-md-block">
+                <h3 class="fw-bold">Contenidos</h3>
+                <p class="fw-bold">Escolares, Reparacion, Programacion y Más <a href="#" class="btn btn-primary text-white" >Seguir Leyendo</a></p>
+              </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="../../../../assets/img/carrusel/Banner2.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-sm-none d-lg-block">
+          <div class="container">
+              <div class="row">
+                <div class="col-4 ">
+                    <a href="#" target="_blank" rel="noopener noreferrer"></a>
+                    <h3>Bubus</h3>
+                    <p>Autor no se que mas poner y programo estando hebrio!!!</p>
+                </div>
+                <div class="col-4 ">
+                    <a href="#" target="_blank" rel="noopener noreferrer"> </a>
+                    <h3>Bubus</h3>
+                    <p>Autor no se que mas poner y programo estando hebrio!!!</p>
+                </div>
+                <div class="col-4 ">
+                    <a href="#" target="_blank" rel="noopener noreferrer"></a>
+                    <h3>Bubus</h3>
+                    <p>Autor no se que mas poner y programo estando hebrio!!!</p>
+                </div>
+                
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-texto" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel-texto" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 
 <!-- subtitulo -->
     <div class="parrafo">
