@@ -9,7 +9,14 @@ export class HomePageComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.http.get<Coin[]>('https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+    .subscribe( 
+      (res)=> {
+        console.log(res);
+        this.coins = res
+      }, 
+    (err) => console.log(err));
   }
 
 }
