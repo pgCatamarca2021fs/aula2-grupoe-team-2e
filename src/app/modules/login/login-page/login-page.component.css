@@ -1,6 +1,22 @@
-form{
-    max-width: 50%;
+.login-grup{
+    padding-left: 20px;
+    padding-right: 20px;
+    align-content: center;
+    max-width: 60%;
     padding-top: 5vh;
     padding-bottom: 5vh;
     margin: 0 auto; /* alinea el centro el formulario */
+    background-color: white;
 }
+.align-items-center{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+@media (max-width: 750px) {
+    .login-grup{
+       
+        max-width: 90%;
+        
+    }
+}
+

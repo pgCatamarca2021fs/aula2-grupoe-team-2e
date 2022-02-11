@@ -22,12 +22,15 @@ header img{
     top: 20px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 750px) {
     .cajafuerte{
         max-height: 75%;
         position: relative;
         right: 0;
         top: 0;
+    }
+    #carousel-texto{
+        display: none;
     }
 }
 
