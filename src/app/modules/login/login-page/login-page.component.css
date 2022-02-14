@@ -1,6 +1,16 @@
-form{
-    max-width: 50%;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-    margin: 0 auto; /* alinea el centro el formulario */
+.bg-dark{
+    --dark: #16191c;
+    --dark-x: #1e2126;
+    --light: #ffffff;
+    font-family: 'Spartan', sans-serif;
+    font-weight: 300;
+    color: var(--light);
+    background-color: var(--dark) !important;
+}
+.bg-dark-x{
+    background-color: var(--dark-x);
+}
+.form-control, .btn{
+    min-height: 3.125rem;
+    line-height: initial;
 }
