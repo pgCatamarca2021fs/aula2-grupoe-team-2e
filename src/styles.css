@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: RopaSansRegular;
+    src: url(assets/fonts/Ropa_Sans/RopaSans-Regular.ttf);
+}
+
 *{
     padding: 0px;
     margin: 0px;
+    font-family: RopaSansRegular;
 }
 
 /* Scroll bar */

@@ -1,0 +1,9 @@
+#logo-cripoCat{
+    color: white;
+    position: absolute;
+    left: 3%;
+}
+.logo-imagen>img{
+    border: 5px solid white;
+    border-radius: 50%;
+}
