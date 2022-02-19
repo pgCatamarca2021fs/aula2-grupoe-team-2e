@@ -2,15 +2,36 @@
     --dark: #16191c;
     --dark-x: #1e2126;
     --light: #ffffff;
-    font-family: 'Spartan', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--light);
     background-color: var(--dark) !important;
+    margin: 0%;
+    max-height: 600px;
 }
+.carousel {
+    height: 525px;
+  }
 .bg-dark-x{
     background-color: var(--dark-x);
 }
 .form-control, .btn{
     min-height: 3.125rem;
     line-height: initial;
+}
+.img{
+    background-size: cover;
+    background-position: center;
+}
+.logo{
+    margin-top: 0%;
+    margin-bottom: 0%;
+}
+.logo img{
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+.formulario{
+    margin-top: -50px;
+    margin-bottom: 0%;
 }
