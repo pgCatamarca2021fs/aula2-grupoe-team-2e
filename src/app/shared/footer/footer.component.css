@@ -15,3 +15,7 @@
 .columna-medio{
     text-decoration: none;
 }
+
+.col-md-7{
+    margin: 0 auto;
+}
