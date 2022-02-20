@@ -6,3 +6,16 @@
     background-color: rgb(43, 43, 67);
     margin: 20px;
 }
+
+.enlace-red-social{
+    text-decoration: none;
+    color: lightseagreen;
+}
+
+.columna-medio{
+    text-decoration: none;
+}
+
+.col-md-7{
+    margin: 0 auto;
+}
