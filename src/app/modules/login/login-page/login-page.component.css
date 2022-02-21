@@ -9,10 +9,11 @@
     max-height: 600px;
 }
 .carousel {
-    height: 525px;
+    height: 575px;
   }
 .bg-dark-x{
     background-color: var(--dark-x);
+    color: #ffffff;
 }
 .form-control, .btn{
     min-height: 3.125rem;
@@ -20,6 +21,21 @@
 }
 .img{
     background-size: cover;
+    background-position: center;
+}
+.img-1{
+    background-image: url(../../../../assets/img/carrusel/moneda.jpg);
+    background-size:cover;
+    background-position: center;
+}
+.img-2{
+    background-image: url(../../../../assets/img/carrusel/moneda2.jpg);
+    background-size:cover;
+    background-position: center;
+}
+.img-3{
+    background-image: url(../../../../assets/img/carrusel/moneda3.jpg);
+    background-size:cover;
     background-position: center;
 }
 .logo{
@@ -34,4 +50,7 @@
 .formulario{
     margin-top: -50px;
     margin-bottom: 0%;
+}
+.pie{
+    color:#c4c4c4;
 }
