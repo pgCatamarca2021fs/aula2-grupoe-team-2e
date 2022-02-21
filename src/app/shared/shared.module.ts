@@ -5,12 +5,14 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LogoComponent } from './logo/logo.component';
 
 
 @NgModule({
   declarations: [
     NavBarComponent,
-    FooterComponent
+    FooterComponent,
+    LogoComponent
   ],
   imports: [
     CommonModule,
