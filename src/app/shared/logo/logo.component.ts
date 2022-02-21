@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { faChevronCircleDown,
+  faChevronCircleUp,
+  IconDefinition} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-logo',
@@ -6,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logo.component.css']
 })
 export class LogoComponent implements OnInit {
+
+  faChevronCircleDown: IconDefinition = faChevronCircleDown
 
   constructor() { }
 

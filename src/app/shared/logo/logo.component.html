@@ -1,14 +1,24 @@
 <div id="logo-cripoCat">
     <div class="menu">
-        <select name="cars" id="cars">
-            <option value="volvo"><a href="#" routerLink="/login">Login</a></option>
-            https://www.w3.org/TR/wai-aria-practices-1.1/examples/menubar/menubar-1/menubar-1.html#
-            <option value="saab">Saab</option>
-            <option value="opel">Opel</option>
-            <option value="audi">Audi</option>
-        </select>
+        <div class="container">
+            <button class="boton">
+                <div class="d-flex">
+                        <a class="boton-menu" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            MENÚ
+                        </a>
+                        <fa-icon class="icon"[icon]="faChevronCircleDown" >
+                        </fa-icon>
+                        
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#" routerLink="/usuario">Contacto</a></li>
+                            <li><a class="dropdown-item" href="#">Ayuda</a></li>
+                            <li><a class="dropdown-item" href="#">Acerca de</a></li>
+                        </ul>
+                </div>
+            </button>
+        </div>    
     </div>
     <div class="logo-imagen">
-        <img src="../../../assets/img/logos/logo-cat.jpg" width="100px" height="100px" alt="logo">
+        <img src="../../../assets/img/logos/logo-cryptocat.svg" width="100px" height="100px" alt="logo">
     </div>
 </div>

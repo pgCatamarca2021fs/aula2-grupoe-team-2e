@@ -58,3 +58,8 @@
     }
     /* fin menu desplegado */
 }
+
+/* color de las opciones del nav*/
+.navbar-item > a{
+    color: lightseagreen;
+}
