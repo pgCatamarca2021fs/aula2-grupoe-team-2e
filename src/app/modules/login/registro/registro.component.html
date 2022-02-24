@@ -5,13 +5,14 @@
         <div class="col-12 col-lg-9 col-xl-7">
           <div class="card mt-5 mb-5">
             <div class="card-body p-4 p-md-5">
-              <h3 class="mb-4 pb-2">Formulario de Registro</h3>
-              <form (ngSubmit)="agregarUsuario()">
+              <h1 class="mb-0">Registro</h1>
+              <p class="mb-0">Por favor complete los siguientes datos</p>
+              <p class="mb-4 pb-2">*datos obligatorios</p>
+              <form (ngSubmit)="agregarUsuario()" [formGroup]="formRegistracion">
                 <div class="row">
                   <div class="col-md-6 mb-4">
-
                     <div class="form-outline">
-                      <input 
+                      <input formControlName="name"
                         type="text" 
                         id="nombre" 
                         placeholder="Nombre" 
@@ -20,11 +21,10 @@
                         [(ngModel)]="usuario.name"
                       />
                     </div>
-
                   </div>
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
-                      <input 
+                      <input formControlName="lastName"
                         type="text" 
                         id="apellido" 
                         placeholder="Apellido" 
@@ -38,7 +38,7 @@
                 <div class="row">
                   <div class="col-md-12 mb-4">
                     <div class="form-outline">
-                      <input 
+                      <input formControlName="password"
                         type="password" 
                         id="password" 
                         placeholder="Contraseña" 
@@ -52,7 +52,7 @@
                 <div class="row">
                   <div class="col-md-12 mb-4">
                     <div class="form-outline">
-                      <input 
+                      <input formControlName="passwordRepeat"
                         type="password" 
                         id="passwordRepeat" 
                         placeholder="Repetir contraseña" 
@@ -63,12 +63,11 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="col-md-12 mb-4">
                     <div class="form-outline datepicker">
                       <label for="cumpleanios" class="form-label">Cumpleaños</label>
-                      <input #cumpleanos
+                      <input formControlName="birthday"
                         type="date"
                         [(ngModel)]="usuario.birthday"
                         class="form-control"
@@ -78,45 +77,46 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="col-12 mb-4">
-
                     <div class="form-outline">
-                      <input type="email" id="emailAddress" class="form-control" name="email"
+                      <input formControlName="email"
+                        type="email" 
+                        id="emailAddress" 
+                        class="form-control" 
+                        name="email"
                         placeholder="E-mail"
                         [(ngModel)]="usuario.email"
                       />
                     </div>
-
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12 mb-4">
-  
                     <div class="form-outline">
-                      <input type="text" id="dniDocument" class="form-control" name="documento"
+                      <input formControlName="dni"
+                        type="text" 
+                        id="dniDocument" 
+                        class="form-control" 
+                        name="documento"
                         placeholder="Documento"
                         [(ngModel)]="usuario.dni"
                       />
                     </div>
-  
                   </div>
                 </div>
-
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="mt-4">
+                    <div class="mt-4 botones-submit">
                       <input class="btn btn-dark btn-lg" type="submit" value="Volver" />
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="mt-4">
+                    <div class="mt-4 botones-submit">
                       <input class="btn btn-dark btn-lg" type="submit" value="Registrarse" />
                     </div>
                   </div>
                 </div>
-
               </form>
             </div>
           </div>

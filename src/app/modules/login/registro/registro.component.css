@@ -2,6 +2,16 @@
     border-radius: 50px;
 }
 
+h1{
+    font-size: 1.9rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+.card-body>p{
+    font-size: 18px;
+    text-align: center;
+}
+
 input{
     border-color: rgb(14, 14, 14);
 }
@@ -14,6 +24,12 @@ label[for="cumpleanios"]{
     position: absolute;
     left: 90px;
     top: 7px
+}
+
+@media (min-width: 768px) {
+    .botones-submit{
+        text-align: center;
+    }
 }
 
 .btn-dark{
