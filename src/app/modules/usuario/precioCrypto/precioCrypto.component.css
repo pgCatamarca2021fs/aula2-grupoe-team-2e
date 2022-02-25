@@ -1,0 +1,20 @@
+.Tabla-Crypto{
+    margin: auto;
+    height: auto;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    margin: 20px;
+    margin-top: 25px;
+    padding-top: 40px;
+    position: relative;
+    height: 323px;
+    overflow: auto; 
+}
+.table{
+    width:90%;
+    margin-left: 30px;
+}
+.tope{
+    width:90%;
+    margin-left: 30px;
+}
