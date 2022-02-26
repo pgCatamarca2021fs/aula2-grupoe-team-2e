@@ -2,18 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { UsuarioRoutingModule } from './usuario-routing.module';
-import { HttpClientModule } from '@angular/common/http';
-
+import { PrecioCryptoComponent } from './precioCrypto/precioCrypto.component';
+import { FormsModule } from '@angular/forms';
+import { ArgMoneyPipe } from './pipes/argMoney.pipe';
 
 
 @NgModule({
   declarations: [
-    DashboardPageComponent
+    DashboardPageComponent,
+    PrecioCryptoComponent,
+    ArgMoneyPipe
   ],
   imports: [
     CommonModule,
     UsuarioRoutingModule,
-    HttpClientModule
+    FormsModule,
   ]
 })
 export class UsuarioModule { }
