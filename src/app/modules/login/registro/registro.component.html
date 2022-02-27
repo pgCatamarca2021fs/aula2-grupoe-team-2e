@@ -18,7 +18,6 @@
                         placeholder="Nombre" 
                         class="form-control" 
                         name="nombre"
-                        [(ngModel)]="usuario.name"
                       />
                     </div>
                   </div>
@@ -30,7 +29,6 @@
                         placeholder="Apellido" 
                         class="form-control"
                         name="apellido"
-                        [(ngModel)]="usuario.lastName"
                       />
                     </div>
                   </div>
@@ -44,7 +42,6 @@
                         placeholder="Contraseña" 
                         class="form-control"
                         name="contrasena"
-                        [(ngModel)]="usuario.password"
                       />
                     </div>
                   </div>
@@ -58,7 +55,6 @@
                         placeholder="Repetir contraseña" 
                         class="form-control"
                         name="contrasenaRepetir"
-                        [(ngModel)]="usuario.passwordRepeat"
                       />
                     </div>
                   </div>
@@ -69,10 +65,10 @@
                       <label for="cumpleanios" class="form-label">Cumpleaños</label>
                       <input formControlName="birthday"
                         type="date"
-                        [(ngModel)]="usuario.birthday"
                         class="form-control"
                         id="cumpleanios"
-                        name="cumpleanios"
+                        name="birthday"
+                        [max]="dateToday"
                       />
                     </div>
                   </div>
@@ -86,7 +82,6 @@
                         class="form-control" 
                         name="email"
                         placeholder="E-mail"
-                        [(ngModel)]="usuario.email"
                       />
                     </div>
                   </div>
@@ -95,25 +90,25 @@
                   <div class="col-12 mb-4">
                     <div class="form-outline">
                       <input formControlName="dni"
-                        type="text" 
+                        type="number" 
                         id="dniDocument" 
                         class="form-control" 
                         name="documento"
                         placeholder="Documento"
-                        [(ngModel)]="usuario.dni"
                       />
                     </div>
                   </div>
                 </div>
+                <p>{{formRegistracion.get('passwordRepeat')?.valid}} </p>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="mt-4 botones-submit">
-                      <input class="btn btn-dark btn-lg" type="submit" value="Volver" />
+                      <button class="btn btn-dark btn-lg" routerLink="/home">Volver</button>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="mt-4 botones-submit">
-                      <input class="btn btn-dark btn-lg" type="submit" value="Registrarse" />
+                      <button [disabled]="formRegistracion.invalid" class="btn btn-dark btn-lg" type="submit">Registrase</button>
                     </div>
                   </div>
                 </div>
