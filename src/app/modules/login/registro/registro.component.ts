@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import Usuario from '../interfaces/usuario.interface';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import MyValidations from '../functions/my-validations';
 
 @Component({
   selector: 'app-registro',
@@ -14,15 +14,17 @@ export class RegistroComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   agregarUsuario(){
-    console.log("hola",this.formRegistracion.value);  
+    console.log("hola",this.formRegistracion.value);
   }
 
   ngOnInit() {
+    console.log(this.formRegistracion.value)
     const date: Date = new Date
     this.dateToday = String(date.getFullYear() + '-' + 
       String(date.getMonth() + 1).padStart(2, '0') + '-' + 
       date.getDate()).padStart(2, '0');
 
+    //Validaciones
     this.formRegistracion = this.formBuilder.group({
       name: this.formBuilder.control('',[
         Validators.required,
@@ -41,7 +43,7 @@ export class RegistroComponent implements OnInit {
       ]),
       passwordRepeat: new FormControl('',[
         Validators.required,
-        this.controlValuesAreEqual('password','passwordRepeat')
+        this.controlValuesAreEqual('password', 'passwordRepeat')
       ]),
       birthday: new FormControl(this.dateToday,[
         Validators.required
