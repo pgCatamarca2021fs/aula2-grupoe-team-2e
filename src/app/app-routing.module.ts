@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardPageComponent } from './modules/usuario/pages/dashboard-page/dashboard-page.component';
+import { HomePageComponent } from './modules/home/home-page/home-page.component';
+
 
 const routes: Routes = [
   {
-    path:'home',
+    path:'',
+    component: HomePageComponent,
     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
   },
   {
@@ -16,10 +18,10 @@ const routes: Routes = [
     // component: DashboardPageComponent,
     loadChildren: () => import('./modules/usuario/usuario.module').then(m => m.UsuarioModule)
   },
-  // {
-  //   path:'**',
-  //   redirectTo: '/home'
-  // }
+  {
+    path:'**',
+    redirectTo: '/'
+  }
 ];
 
 @NgModule({
