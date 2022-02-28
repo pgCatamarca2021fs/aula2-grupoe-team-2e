@@ -1,0 +1,49 @@
+
+.menu-left{
+    margin: auto;
+    height: auto;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px;
+    margin: 20px;
+    margin-top: 25px;
+    padding-top: 40px;
+}
+#lista-botones{
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 90px;
+}
+.Button {
+    border-radius: 10px;
+    font-family: Arial;
+    color: #3d3d3d;
+    font-size: 17px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    width: auto;
+    height: auto;
+    border: solid #000000 2px;
+    text-decoration: none;
+  }
+  
+  .Button:hover {
+    background: #000000;
+    color: white;
+    text-decoration: none;
+  }
+  #h3-user{
+      margin-bottom: 20px;
+  }
+  #name-user{
+      background-color: #000000;
+      color: rgb(255, 255, 255);
+      width: auto;
+      margin-left: 25px;
+      margin-right: 25px;
+      margin-bottom: 40px;
+      padding: 5px;
+      border-radius: 10px;
+  }
+  

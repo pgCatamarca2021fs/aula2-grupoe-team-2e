@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardPageComponent } from './modules/usuario/pages/dashboard-page/dashboard-page.component';
 
 const routes: Routes = [
   {
@@ -12,12 +13,13 @@ const routes: Routes = [
   },
   {
     path:'usuario',
+    // component: DashboardPageComponent,
     loadChildren: () => import('./modules/usuario/usuario.module').then(m => m.UsuarioModule)
   },
-  {
-    path:'**',
-    redirectTo: '/home'
-  }
+  // {
+  //   path:'**',
+  //   redirectTo: '/home'
+  // }
 ];
 
 @NgModule({
