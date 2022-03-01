@@ -1,13 +1,33 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
+import { BilleteraPageComponent } from './pages/billetera-page/billetera-page.component';
+import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
+import { InicioUsuarioComponent } from './pages/inicio-usuario/inicio-usuario.component';
 
 
 const routes: Routes = [
     {
         path: '',
         component: DashboardPageComponent,
+       
+        children: [
+            {
+                path:'inicio',
+                component: InicioUsuarioComponent,
+                // outlet: 'child',
+            },
+            {
+                path:'billetera',
+                component: BilleteraPageComponent,
+                // outlet: 'child',
+            }
+        ]
+    },
+    {
+        path:'**',
+        redirectTo:'/usuario/inicio'
     }
+    
 ];
 
 @NgModule({
