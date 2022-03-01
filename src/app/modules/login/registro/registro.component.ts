@@ -13,16 +13,11 @@ export class RegistroComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { }
 
-  agregarUsuario(){
-    console.log("hola",this.formRegistracion.value);
-  }
-
   ngOnInit() {
-    console.log(this.formRegistracion.value)
     const date: Date = new Date
     this.dateToday = String(date.getFullYear() + '-' + 
       String(date.getMonth() + 1).padStart(2, '0') + '-' + 
-      date.getDate()).padStart(2, '0');
+      String(date.getDate()).padStart(2, '0'));
 
     //Validaciones
     this.formRegistracion = this.formBuilder.group({
@@ -46,7 +41,9 @@ export class RegistroComponent implements OnInit {
         this.controlValuesAreEqual('password', 'passwordRepeat')
       ]),
       birthday: new FormControl(this.dateToday,[
-        Validators.required
+        Validators.required,
+        this.isYoung()
+
       ]),
       email: new FormControl('',[
         Validators.required,
@@ -73,5 +70,27 @@ export class RegistroComponent implements OnInit {
       };
     };
   };
+
+  public isYoung (): ValidatorFn{
+    return(): ValidationErrors | null => {
+      const fechaCruda:string | undefined = this.formRegistracion.get('birthday')?.value;
+      const cumpleanosUsuario:Date = new Date(fechaCruda!);
+      cumpleanosUsuario.setDate( cumpleanosUsuario.getDate() + 1 );
+
+      const hoydia:Date = new Date();
+
+      let edadUsuario = Math.abs(cumpleanosUsuario.getTime() - hoydia.getTime());
+      edadUsuario = Math.round(edadUsuario/(1000 * 3600 * 24 * 365));
+
+      if ( edadUsuario >= 18 ) {
+          return null;
+      }
+      return { valuesDoNotMatch: true }
+    }
+  }
+
+  agregarUsuario(){
+    console.log("hola",this.formRegistracion.value);
+  }
 
 }
