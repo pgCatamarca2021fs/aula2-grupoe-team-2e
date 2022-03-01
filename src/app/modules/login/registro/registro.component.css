@@ -1,5 +1,6 @@
-.card{
-    border-radius: 50px;
+.card-body , .card{
+    border-radius: 50px !important;
+    background-color: #16191c !important;
 }
 
 h1{
@@ -7,19 +8,29 @@ h1{
     text-align: center;
     text-transform: uppercase;
 }
-.card-body>p{
+.title-info>p{
     font-size: 18px;
     text-align: center;
 }
 
-input{
-    border-color: rgb(14, 14, 14);
+.form-control{
+    background-color: var(--dark-x) !important;
+    color: #ffffff !important;
+    border: 0px;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
+}
+
+.menssage-alert{
+    position: relative;
+}
+.menssage-alert>small{
+    position: absolute;
+    top: -5px;
 }
 
 div[class="form-outline datepicker"]{
@@ -42,23 +53,28 @@ label[for="cumpleanios"]{
     margin-left: 10px;
     margin-right: 10px;
     border-radius: 10px;
-    padding: 0px 15px 0px 15px;
+    padding: 0px 15px 0px 15px
+}
+
+#boton-registrar{
+    background-color: var(--valid) !important;
+    transition:  background-color 2s;
+}
+#boton-registrar:hover, #boton-registrar:focus{
+    background-color: green !important;
+    transition: border-color .5s;
+}
+#boton-registrar[disabled]{
+    background-color: var(--invalid) !important;
 }
 
 /* status class */
-.ng-valid[required], .ng-valid  {
+.ng-valid[required], .ng-valid:not(form)  {
     border-left: 5px solid #42A948; /* green */
 }
   
 .ng-invalid:not(form)  {
     border-left: 5px solid #a94442; /* red */
-}
-  
-.alert div {
-    background-color: #fed3d3;
-    color: #820000;
-    padding: 1rem;
-    margin-bottom: 1rem;
 }
   
 .form-group {
@@ -68,10 +84,5 @@ label[for="cumpleanios"]{
 label {
     display: block;
     margin-bottom: .5rem;
-}
-  
-select {
-    width: 100%;
-    padding: .5rem;
 }
 /* status class fin*/

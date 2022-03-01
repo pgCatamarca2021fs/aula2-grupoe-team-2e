@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import MyValidations from '../functions/my-validations';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
@@ -24,12 +23,12 @@ export class RegistroComponent implements OnInit {
       name: this.formBuilder.control('',[
         Validators.required,
         Validators.minLength(2),
-        Validators.pattern("^[^0-9]*$") //no numeros
+        Validators.pattern("^[A-Za-z]*$") //no numeros
       ]),
       lastName: new FormControl('',[
         Validators.required,
         Validators.minLength(2),
-        Validators.pattern("^[^0-9]*$")
+        Validators.pattern("^[A-Za-z]*$")
       ]),
       password: new FormControl('',[
         Validators.required,
@@ -56,6 +55,16 @@ export class RegistroComponent implements OnInit {
     });
   }
 
+  
+  public get name() : AbstractControl | null {return this.formRegistracion.get('name');}
+  public get lastName() : AbstractControl | null {return this.formRegistracion.get('lastName');}
+  public get password() : AbstractControl | null {return this.formRegistracion.get('password');}
+  public get passwordRepeat() : AbstractControl | null {return this.formRegistracion.get('passwordRepeat');}
+  public get birthday() : AbstractControl | null {return this.formRegistracion.get('birthday');}
+  public get email() : AbstractControl | null {return this.formRegistracion.get('email');}
+  public get dni() : AbstractControl | null {return this.formRegistracion.get('dni');}
+  
+
   private controlValuesAreEqual(controlNameA: string, controlNameB: string): ValidatorFn {
     return (): ValidationErrors | null => {
       // const formGroup = control as FormGroup;
@@ -71,7 +80,7 @@ export class RegistroComponent implements OnInit {
     };
   };
 
-  public isYoung (): ValidatorFn{
+  private isYoung (): ValidatorFn{
     return(): ValidationErrors | null => {
       const fechaCruda:string | undefined = this.formRegistracion.get('birthday')?.value;
       const cumpleanosUsuario:Date = new Date(fechaCruda!);
@@ -85,12 +94,15 @@ export class RegistroComponent implements OnInit {
       if ( edadUsuario >= 18 ) {
           return null;
       }
-      return { valuesDoNotMatch: true }
+      return { valuesIsYoung: true }
     }
   }
 
   agregarUsuario(){
-    console.log("hola",this.formRegistracion.value);
+    if (this.formRegistracion.invalid) {
+      return
+    }
+    console.log("Datos enviados",this.formRegistracion.value);
   }
 
 }

@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+    --dark: #16191c;
+    --dark-x: #1e2126;
+    --light: #ffffff;
+    --valid: #42A948;
+    --invalid: #a94442;
+}
+
 @font-face {
     font-family: RopaSansRegular;
     src: url(assets/fonts/Ropa_Sans/RopaSans-Regular.ttf);
