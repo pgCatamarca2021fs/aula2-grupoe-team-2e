@@ -68,6 +68,10 @@ label[for="cumpleanios"]{
     background-color: var(--invalid) !important;
 }
 
+.pie{
+    color: #c4c4c4;
+}
+
 /* status class */
 .ng-valid[required], .ng-valid:not(form)  {
     border-left: 5px solid #42A948; /* green */
@@ -80,7 +84,7 @@ label[for="cumpleanios"]{
 .form-group {
     margin-bottom: 1rem;
 }
-  
+
 label {
     display: block;
     margin-bottom: .5rem;
