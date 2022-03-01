@@ -2,115 +2,190 @@
   <div class="mask d-flex align-items-center h-100 gradient-custom">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-12 col-lg-9 col-xl-7">
-          <div class="card">
+        <div class="col-12 col-lg-9">
+          <div class="card mt-5 mb-5">
             <div class="card-body p-4 p-md-5">
-              <h3 class="mb-4 pb-2">Formulario de Registro</h3>
-
-              <form action="">
-
+              <div class="title-info text-white">
+                <h1 class="mb-0">Registro</h1>
+                <p class="mb-0">Por favor complete los siguientes datos</p>
+                <p class="mb-4 pb-2">*datos obligatorios</p>
+              </div>
+              <form (ngSubmit)="agregarUsuario()" [formGroup]="formRegistracion">
                 <div class="row">
                   <div class="col-md-6 mb-4">
-
                     <div class="form-outline">
-                      <input type="text" id="nombre" class="form-control" />
-                      <label class="form-label" for="nombre">Nombre</label>
+                      <input formControlName="name"
+                        type="text" 
+                        id="nombre" 
+                        placeholder="Nombre" 
+                        class="form-control" 
+                        name="nombre"
+                      />
                     </div>
-
+                    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="menssage-alert bg-light">
+                      <small *ngIf="name?.errors?.['minlength']" id="passwordHelpBlock" class="form-text text-danger">
+                        Mayor a 2 letras
+                      </small>
+                      <small *ngIf="name?.errors?.['required']" id="passwordHelpBlock" class="form-text text-danger">
+                        Obligatorio.
+                      </small>
+                      <small *ngIf="!name?.errors?.['minlength'] && name?.errors?.['pattern']" id="passwordHelpBlock" class="form-text text-danger">
+                        Solo letras.
+                      </small>
+                    </div>
                   </div>
                   <div class="col-md-6 mb-4">
-
                     <div class="form-outline">
-                      <input type="text" id="apellido" class="form-control" />
-                      <label class="form-label" for="apellido">Apellido</label>
+                      <input formControlName="lastName"
+                        type="text" 
+                        id="apellido" 
+                        placeholder="Apellido" 
+                        class="form-control"
+                        name="apellido"
+                      />
                     </div>
-
+                    <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)" class="menssage-alert bg-light">
+                      <small *ngIf="lastName?.errors?.['minlength']" id="passwordHelpBlock" class="form-text text-danger">
+                        Mayor a 2 letras
+                      </small>
+                      <small *ngIf="lastName?.errors?.['required']" id="passwordHelpBlock" class="form-text text-danger">
+                        Obligatorio.
+                      </small>
+                      <small *ngIf="!lastName?.errors?.['minlength'] && lastName?.errors?.['pattern']" id="passwordHelpBlock" class="form-text text-danger">
+                        No ingrese números
+                      </small>
+                    </div>
                   </div>
                 </div>
-
                 <div class="row">
-                  <div class="col-md-6 mb-4">
-
+                  <div class="col-md-12 mb-4">
+                    <div class="form-outline">
+                      <input formControlName="password"
+                        type="password" 
+                        id="password" 
+                        placeholder="Contraseña" 
+                        class="form-control"
+                        name="contrasena"
+                      />
+                    </div>
+                    <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="menssage-alert bg-light">
+                      <small *ngIf="password?.errors?.['minlength']" id="passwordHelpBlock" class="form-text text-danger">
+                        Mayor a 4 digitos
+                      </small>
+                      <small *ngIf="password?.errors?.['required']" id="passwordHelpBlock" class="form-text text-danger">
+                        Obligatorio.
+                      </small>
+                      <small *ngIf="password?.errors?.['maxlength']" id="passwordHelpBlock" class="form-text text-danger">
+                        Maximo permitido 12 digitos
+                      </small>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 mb-4">
+                    <div class="form-outline">
+                      <input formControlName="passwordRepeat"
+                        type="password" 
+                        id="passwordRepeat" 
+                        placeholder="Repetir contraseña" 
+                        class="form-control"
+                        name="contrasenaRepetir"
+                      />
+                    </div>
+                    <div *ngIf="passwordRepeat?.invalid && (passwordRepeat?.dirty || passwordRepeat?.touched)" class="menssage-alert bg-light">
+                      <small *ngIf="passwordRepeat?.errors?.['required']" id="passwordHelpBlock" class="form-text text-danger">
+                        Requerido
+                      </small>
+                      <small *ngIf="passwordRepeat?.errors?.['valuesDoNotMatch']" id="passwordHelpBlock" class="form-text text-danger">
+                        Las contraseñas no coinciden
+                      </small>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 mb-4">
                     <div class="form-outline datepicker">
-                      <input
-                        type="datetime-local"
+                      <label for="cumpleanios" class="form-label">Cumpleaños</label>
+                      <input formControlName="birthday"
+                        type="date"
                         class="form-control"
                         id="cumpleanios"
+                        name="birthday"
+                        [max]="dateToday"
+                        min="1922-01-01"
                       />
-                      <label for="cumpleanios" class="form-label">Cumpleaños</label>
                     </div>
-
-                  </div>
-                  <div class="col-md-6 mb-4">
-
-                    <h6 class="mb-2 pb-1">Genero: </h6>
-
-                    <div class="form-check form-check-inline">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="inlineRadioOptions"
-                        id="femaleGender"
-                        value="option1"
-                      />
-                      <label class="form-check-label" for="femaleGender">Femenino</label>
+                    <div *ngIf="birthday?.invalid && (birthday?.dirty || birthday?.touched)" class="menssage-alert bg-light">
+                      <small *ngIf="birthday?.errors?.['required']" id="passwordHelpBlock" class="form-text text-danger">
+                        Requerido
+                      </small>
+                      <small *ngIf="birthday?.errors?.['valuesIsYoung']" id="passwordHelpBlock" class="form-text text-danger">
+                        La fecha no es válida.
+                      </small>
                     </div>
-
-                    <div class="form-check form-check-inline">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="inlineRadioOptions"
-                        id="maleGender"
-                        value="option2"
-                      />
-                      <label class="form-check-label" for="maleGender">Masculino</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="inlineRadioOptions"
-                        id="otherGender"
-                        value="option3"
-                      />
-                      <label class="form-check-label" for="otherGender">Otro</label>
-                    </div>
-
                   </div>
                 </div>
-
                 <div class="row">
-                  <div class="col-md-6 mb-4">
-
+                  <div class="col-12 mb-4">
                     <div class="form-outline">
-                      <input type="email" id="emailAddress" class="form-control" />
-                      <label class="form-label" for="emailAddress">Email</label>
+                      <input formControlName="email"
+                        type="email" 
+                        id="emailAddress" 
+                        class="form-control" 
+                        name="email"
+                        placeholder="E-mail"
+                      />
                     </div>
-
-                  </div>
-                  <div class="col-md-6 mb-4">
-
-                    <div class="form-outline">
-                      <input type="tel" id="phoneNumber" class="form-control" />
-                      <label class="form-label" for="phoneNumber">Numero de Telefono</label>
+                    <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="menssage-alert bg-light">
+                      <small *ngIf="email?.errors?.['required']" id="passwordHelpBlock" class="form-text text-danger">
+                        Requerido.
+                      </small>
+                      <small *ngIf="email?.errors?.['email']" id="passwordHelpBlock" class="form-text text-danger">
+                        Su correo no es válido.
+                      </small>
                     </div>
-
                   </div>
                 </div>
-
                 <div class="row">
-                  <div class="col-12">
-
-                    <div class="mt-4">
-                      <input class="btn btn-dark btn-lg" type="submit" value="Registrarse" />
+                  <div class="col-12 mb-4">
+                    <div class="form-outline">
+                      <input formControlName="dni"
+                        type="number" 
+                        id="dniDocument" 
+                        class="form-control" 
+                        name="documento"
+                        placeholder="Documento"
+                      />
+                      <div *ngIf="dni?.invalid && (dni?.dirty || dni?.touched)" class="menssage-alert bg-light">
+                        <small *ngIf="dni?.errors?.['required']" id="passwordHelpBlock" class="form-text text-danger">
+                          Obligatorio.
+                        </small>
+                        <small *ngIf="dni?.errors?.['min']" id="passwordHelpBlock" class="form-text text-danger">
+                          Su dni no es válido.
+                        </small>
+                      </div>
                     </div>
-
                   </div>
                 </div>
-
+                <!-- <p>Cumpleaños: {{name?.errors | json}} </p>
+                <p>Cumpleaños: {{formRegistracion.valid}} </p> -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mt-4 botones-submit">
+                      <button type="button" class="btn btn-dark btn-lg" routerLink="/home">Volver</button>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mt-4 botones-submit">
+                      <button [disabled]="formRegistracion.invalid" id="boton-registrar" class="btn btn-dark btn-lg">Registrase</button>
+                    </div>
+                  </div>
+                </div>
               </form>
+              <div class="text-center px-lg-5 pt-lg-3 pb-lg-4 w-100 mt-4">
+                <p class="pie d-inline-block mb-0">¿Ya tienes una cuenta? </p> <a href="#" class="text-light font-weight-bold
+                text-decoration-none" routerLink="/login"> Inicia sesión</a>
+              </div>
             </div>
           </div>
         </div>

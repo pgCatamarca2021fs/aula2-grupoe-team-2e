@@ -12,7 +12,7 @@ import { LogoComponent } from './logo/logo.component';
   declarations: [
     NavBarComponent,
     FooterComponent,
-    LogoComponent
+    LogoComponent,
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,4 @@
 .bg-dark{
-    --dark: #16191c;
-    --dark-x: #1e2126;
-    --light: #ffffff;
     font-weight: 400;
     color: var(--light);
     background-color: var(--dark) !important;
