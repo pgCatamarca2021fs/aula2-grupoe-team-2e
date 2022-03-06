@@ -23,7 +23,7 @@ export class RegistroComponent implements OnInit {
       name: this.formBuilder.control('',[
         Validators.required,
         Validators.minLength(2),
-        Validators.pattern("^[A-Za-z]*$") //no numeros
+        Validators.pattern("^[A-Za-z]*$") //Solo letras
       ]),
       lastName: new FormControl('',[
         Validators.required,

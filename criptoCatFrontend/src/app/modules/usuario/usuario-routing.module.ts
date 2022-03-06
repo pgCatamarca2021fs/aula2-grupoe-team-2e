@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BilleteraPageComponent } from './pages/billetera-page/billetera-page.component';
 import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.component';
 import { CompraPageComponent } from './pages/compra-page/compra-page.component';
+import { HistorialPageComponent } from './pages/historial-page/historial-page.component';
 import { InicioUsuarioComponent } from './pages/inicio-usuario/inicio-usuario.component';
 
 
@@ -25,7 +26,10 @@ const routes: Routes = [
             {
                 path:'compra',
                 component: CompraPageComponent,
-                // outlet: 'child',
+            },
+            {
+                path:'historial',
+                component: HistorialPageComponent,
             }
         ]
     },
