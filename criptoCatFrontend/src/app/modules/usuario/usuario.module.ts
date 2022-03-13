@@ -9,6 +9,7 @@ import { InicioUsuarioComponent } from './pages/inicio-usuario/inicio-usuario.co
 import { BilleteraPageComponent } from './pages/billetera-page/billetera-page.component';
 import { RouterModule } from '@angular/router';
 import { CompraPageComponent } from './pages/compra-page/compra-page.component';
+import { VentaPageComponent } from './pages/venta-page/venta-page.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { CompraPageComponent } from './pages/compra-page/compra-page.component';
     PrecioCryptoComponent,
     InicioUsuarioComponent,
     BilleteraPageComponent,
-    CompraPageComponent
+    CompraPageComponent,
+    VentaPageComponent
   ],
   imports: [
     CommonModule,
