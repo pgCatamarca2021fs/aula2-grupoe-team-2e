@@ -8,5 +8,3 @@ export default interface Coin {
     last_updated:string;
 
 }
-
-
