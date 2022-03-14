@@ -87,3 +87,12 @@ h1 {
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.5);
 }
+#img-carrusel {
+  width: 500px; /* anchura */
+  height: 600px; /* altura*/
+}
+
+.exchangee {
+  width: 100%;
+  background-size: contain;
+}
