@@ -1,45 +1,44 @@
-header img{
-    border-radius: 10px;
-    height: 55vh;
-    display:block;
-    margin:auto; 
-    background-size: cover;
+header img {
+  border-radius: 10px;
+  height: 55vh;
+  display: block;
+  margin: auto;
+  background-size: cover;
 }
 
-.img-fluid{
-    max-width: 100%;
-    height:auto;
+.img-fluid {
+  max-width: 100%;
+  height: auto;
 }
 
-.banner-right>div>div>p{
-    color: #000;
+.banner-right > div > div > p {
+  color: #000;
 }
 
-.cajafuerte{
-    max-height: 75%;
-    position: relative;
-    right: 80px;
-    top: 20px;
+.cajafuerte {
+  max-height: 75%;
+  position: relative;
+  right: 80px;
+  top: 20px;
 }
 
 @media (max-width: 991px) {
-    .cajafuerte{
-        max-height: 75%;
-        position: relative;
-        right: 0;
-        top: 0;
-    }
+  .cajafuerte {
+    max-height: 75%;
+    position: relative;
+    right: 0;
+    top: 0;
+  }
 }
 
-#text{
-    display: flex;
-    align-items: center;
+#text {
+  display: flex;
+  align-items: center;
 }
 
-#parrafo{
-    font-size: 30px;
+#parrafo {
+  font-size: 30px;
 }
-
 
 /* .contenedor{
     background-color: seagreen;
@@ -49,32 +48,92 @@ header img{
     border-radius: 15px;
 } */
 
-h1{
-    font-size: 130px;
-    text-align: center;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+h1 {
+  font-size: 130px;
+  text-align: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
-.parrafo{
-    background-color: springgreen;
-    margin: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-radius: 7px;
-    text-align: center;
+.parrafo {
+  background-color: springgreen;
+  margin: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 7px;
+  text-align: center;
 }
 
-.parrafo >h3 {
-    
+.container-fluid {
+  /* background-color: teal; */
+  /* color: wheat; */
+  text-align: center;
 }
 
-.container-fluid{
-    /* background-color: teal; */
-    /* color: wheat; */
-    text-align: center;
+.card > img {
+  height: 50%;
+  max-height: 100%;
 }
 
-.card > img{
-    height: 250px;
+.card-title {
+  padding: 30px;
+  background-color: rgba(0, 128, 128, 0.63);
 }
 
+.card-text {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#img-carrusel {
+  width: 500px; /* anchura */
+  height: 600px; /* altura*/
+}
+
+.exchangee {
+  width: 100%;
+  background-size: contain;
+}
+/* INICIO PRIMERA IMG. CARRUSEL */
+#logoBC {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.texto-encima {
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  font-size: 60px;
+  color: teal;
+}
+/* FIN DE LA PRIMERA IMG. CARRUSEL */
+
+/* inicio 3ra img. del carrusel */
+#logoCD {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.texto-medio1 {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.texto-medio2 {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+/* Fin de la 3ra img. carrusel */
