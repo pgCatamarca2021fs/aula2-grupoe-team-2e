@@ -11,28 +11,27 @@
               href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">
                 Selecione la moneda en su Billetera</a>
               <ul  class="dropdown-menu listado-crypto" aria-labelledby="dropdown03">
-                <li class="lista">
+                <li class="lista" (click)="cambiar(5, 0.11)">
                   <input class="circulo" type="radio" 
                     name="select"
                     value=5
                     [(ngModel)]="Selected" 
 
                   >
-                  <label (click)="cambiar(5, 0.11)" > <!-- Dogue -->
+                  <label  > <!-- Dogue -->
                     <img src="../../../assets/dashboard/404-gato.png" class="rounded-circle" style="width: 2rem;">
                     Dogue Coin <span >Cantidad 5</span> 
                   </label>
                 </li>
                 <!-- ejemplo 2 -->
-                <li class="lista">
+                <li class="lista" (click)="cambiar(10, 1.23)">
                   <input class="circulo" type="radio" 
                     name="select"
-                    
                     [(ngModel)]="Selected" 
                     value=1000
 
                   >
-                  <label (click)="cambiar(10, 1.23)" ><!-- Usd Coin -->
+                  <label  ><!-- Usd Coin -->
                     <img src="../../../assets/dashboard/404-gato.png" class="rounded-circle" style="width: 2rem;">
                     Usd Coin  <span >Cantidad 10</span> 
                   </label>
@@ -42,25 +41,33 @@
           </td>
         </tr>
         <tr *ngIf="!!Selected; else haceEsto">
-          <td>
-            <img class="rounded-circle" style="width: 3rem;">
-          </td>
         </tr>
         <ng-template #haceEsto >
           <h4 class="mensaje-ayuda">Selecione una moneda arriba.</h4>
         </ng-template>
         <tr>
+          <td>
+              <label>Cantidad: <b>{{myValue}} % </b></label>
+              <input  name="state" type="range" [(ngModel)]="myValue" 
+                (change)="getSliderValue($event)" 
+                id="formControlRange" value="0" min="0"  max='100' step="1"   />
+              <label >Cantidad  Max 100%</label>    
+          </td>
+        </tr>
+        <tr>
+
           <td> 
-            <span>Cantidad de Cryptos</span>
-            <input class="pesos" type="number" name="cantidadPesos" disabled
+            <span>Cantidad de Cryptos</span></td>
+            <td> <input class="pesos" type="number" name="cantidadPesos" disabled
             [(ngModel)]="valor"
             >
           </td>
         </tr>
         <tr>
           <td> 
-              <span>Total valor en pesos</span>
-              <input class="pesos" type="number" name="cantidadCrito" disabled
+              <span>Total valor en pesos</span></td>
+          <td>  
+            <input class="pesos" type="number" name="cantidadCrito" disabled
               [(ngModel)]="valor2"
               >
               
@@ -68,7 +75,7 @@
         </tr>
         <tr>
           <td> <a class="btn btn-dark btn-lg" routerLink="/usuario/billetera"> Volver </a></td>
-          <td> <a class="btn btn-dark btn-lg" > Comprar </a></td>
+          <td> <a class="btn btn-dark btn-lg" > Vender </a></td>
         </tr>
       </table>
     </form>
