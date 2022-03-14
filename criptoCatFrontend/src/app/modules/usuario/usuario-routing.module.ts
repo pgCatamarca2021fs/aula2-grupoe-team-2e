@@ -5,6 +5,8 @@ import { DashboardPageComponent } from './pages/dashboard-page/dashboard-page.co
 import { CompraPageComponent } from './pages/compra-page/compra-page.component';
 import { HistorialPageComponent } from './pages/historial-page/historial-page.component';
 import { InicioUsuarioComponent } from './pages/inicio-usuario/inicio-usuario.component';
+import { VentaPageComponent } from './pages/venta-page/venta-page.component';
+
 
 
 const routes: Routes = [
@@ -30,6 +32,10 @@ const routes: Routes = [
             {
                 path:'historial',
                 component: HistorialPageComponent,
+            },
+            {
+                path:'vender',
+                component: VentaPageComponent,
             }
         ]
     },
