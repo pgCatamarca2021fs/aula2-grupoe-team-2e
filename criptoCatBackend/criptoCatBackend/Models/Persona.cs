@@ -12,6 +12,7 @@ namespace criptoCatBackend.Models
         private string apellido;
         private string email;
         private string dni;
+        private string contraseña;
         private DateTime fechaNacimiento;
 
         //propiedades
@@ -20,6 +21,7 @@ namespace criptoCatBackend.Models
         public string Apellido { get => apellido; set => apellido = value; }
         public string Email { get => email; set => email = value; }
         public string Dni { get => dni; set => dni = value; }
+        public string Contraseña { get => contraseña; set => contraseña = value; }
         public DateTime FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
 
         //constructores
@@ -30,6 +32,7 @@ namespace criptoCatBackend.Models
             this.apellido = apellido;
             this.email = email;
             this.dni = dni;
+            this.Contraseña = contraseña;
             this.fechaNacimiento = fechaNacimiento;
         }
         //constructor

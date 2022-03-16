@@ -25,6 +25,9 @@ namespace criptoCatBackend.Controllers
         // POST api/<controller>
         public void Post([FromBody] Persona value)
         {
+            GestorPersona gestor = new GestorPersona();
+            gestor.CrearPersona(value);
+
         }
 
         // PUT api/<controller>/5
