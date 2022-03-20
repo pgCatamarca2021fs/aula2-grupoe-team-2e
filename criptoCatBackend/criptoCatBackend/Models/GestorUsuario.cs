@@ -8,13 +8,13 @@ using System.Data;
 
 namespace criptoCatBackend.Models
 {
-    public class GestorPersona
+    public class GestorUsuario
     {
         string conectionString = ConfigurationManager.ConnectionStrings["BDCriptoCat"].ToString(); //cadena de conexión
 
-        public List<Persona> ListaPersona()
+        public List<Usuario> ListaPersona()
         {
-            List<Persona> lista = new List<Persona>(); //lista tendra una nueva lista de personas(array)
+            List<Usuario> lista = new List<Usuario>(); //lista tendra una nueva lista de personas(array)
 
             //Con esto se establece que la recurso declarada debe ser liberado al final del alcance donde se declaro
             using (SqlConnection sqlconnection = new SqlConnection(this.conectionString))
@@ -31,7 +31,7 @@ namespace criptoCatBackend.Models
 
                 while (dataReader.Read())
                 {
-                    Persona persona = new Persona();
+                    Usuario persona = new Usuario();
                     persona.Id = dataReader.GetInt32(0);
                     persona.Nombre = dataReader.GetString(1);
                     persona.Apellido = dataReader.GetString(2);
@@ -48,7 +48,7 @@ namespace criptoCatBackend.Models
             }
             return lista;
         }
-        public void CrearPersona(Persona persona) {
+        public void CrearPersona(Usuario persona) {
             using (SqlConnection connection = new SqlConnection(this.conectionString)) {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();

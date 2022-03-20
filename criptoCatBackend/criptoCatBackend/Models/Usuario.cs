@@ -5,7 +5,7 @@ using System.Web;
 
 namespace criptoCatBackend.Models
 {
-    public class Persona
+    public class Usuario
     {   //atributos(caracteristicas)
         private int id;
         private string nombre;
@@ -25,7 +25,7 @@ namespace criptoCatBackend.Models
         public DateTime FechaNacimiento { get => fechaNacimiento; set => fechaNacimiento = value; }
 
         //constructores
-        public Persona(int id, string nombre, string apellido, string email, string dni, DateTime fechaNacimiento)
+        public Usuario(int id, string nombre, string apellido, string email, string dni, DateTime fechaNacimiento)
         {
             this.id = id;
             this.nombre = nombre;
@@ -36,7 +36,7 @@ namespace criptoCatBackend.Models
             this.fechaNacimiento = fechaNacimiento;
         }
         //constructor
-        public Persona()
+        public Usuario()
         {
         }
 

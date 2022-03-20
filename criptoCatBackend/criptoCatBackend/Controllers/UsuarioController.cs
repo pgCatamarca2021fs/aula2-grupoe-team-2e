@@ -10,31 +10,31 @@ using System.Web.Http.Cors;
 namespace criptoCatBackend.Controllers
 {
     [EnableCors( origins: "https://localhost:4200" , headers: "*" , methods: "*" )]
-    public class PersonaController : ApiController
+    public class UsuarioController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<Persona> Get()
+        public IEnumerable<Usuario> Get()
         {
-            GestorPersona gestor = new GestorPersona();
+            GestorUsuario gestor = new GestorUsuario();
             return gestor.ListaPersona();
         }
 
         // GET api/<controller>/5
-        public Persona Get(int id)
+        public Usuario Get(int id)
         {
-            return new Persona();
+            return new Usuario();
         }
 
         // POST api/<controller>
-        public void Post([FromBody] Persona value)
+        public void Post([FromBody] Usuario value)
         {
-            GestorPersona gestor = new GestorPersona();
+            GestorUsuario gestor = new GestorUsuario();
             gestor.CrearPersona(value);
 
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody] Persona value)
+        public void Put(int id, [FromBody] Usuario value)
         {
         }
 
