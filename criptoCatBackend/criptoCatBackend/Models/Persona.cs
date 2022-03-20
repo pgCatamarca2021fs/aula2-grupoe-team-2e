@@ -16,7 +16,7 @@ namespace criptoCatBackend.Models
         private DateTime fechaNacimiento;
 
         //propiedades
-        public int Id { get => id;} // sin set para que solo lo lea
+        public int Id { get => id; set => id = value; } // sin set para que solo lo lea
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellido { get => apellido; set => apellido = value; }
         public string Email { get => email; set => email = value; }

@@ -4,37 +4,56 @@ using System.Linq;
 using System.Web;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace criptoCatBackend.Models
 {
     public class GestorPersona
     {
-        string conectionString = ConfigurationManager.ConnectionStrings["BDCriptoCat"].ToString();
+        string conectionString = ConfigurationManager.ConnectionStrings["BDCriptoCat"].ToString(); //cadena de conexión
 
         public List<Persona> ListaPersona()
         {
-            List<Persona> lista = new List<Persona>();
+            List<Persona> lista = new List<Persona>(); //lista tendra una nueva lista de personas(array)
 
-            using(SqlConnection connection = new SqlConnection(this.conectionString))
+            //Con esto se establece que la recurso declarada debe ser liberado al final del alcance donde se declaro
+            using (SqlConnection sqlconnection = new SqlConnection(this.conectionString))
             {
-                connection.Open();
+                sqlconnection.Open();
 
-                SqlCommand command = connection.CreateCommand();
-                command.CommandText = "";
-                command.CommandType = System.Data.CommandType.StoredProcedure;
+                SqlCommand command = sqlconnection.CreateCommand();
+                command.CommandText = "listarUsuarios";
+                command.CommandType = CommandType.StoredProcedure;
+                //le decimos que esto es un procedimiento almacenado SQL
 
                 SqlDataReader dataReader = command.ExecuteReader();
+                //accedo a mi comando(command) y accedo al metodo ExecuteReader
+
+                while (dataReader.Read())
+                {
+                    Persona persona = new Persona();
+                    persona.Id = dataReader.GetInt32(0);
+                    persona.Nombre = dataReader.GetString(1);
+                    persona.Apellido = dataReader.GetString(2);
+                    persona.Email = dataReader.GetString(3);
+                    persona.Dni = dataReader.GetString(4);
+                    persona.FechaNacimiento = dataReader.GetDateTime(5);
+                    persona.Contraseña = dataReader.GetString(6);
+                    //los datos que obtenemos del dataReader lo recorremos y guardamos cada valor en persona
+                    //para luego insertarlo en la lista 
+
+                    lista.Add(persona);
+                }
 
             }
-             
-                return lista;
+            return lista;
         }
         public void CrearPersona(Persona persona) {
             using (SqlConnection connection = new SqlConnection(this.conectionString)) {
                 connection.Open();
                 SqlCommand command = connection.CreateCommand();
                 command.CommandText = "insertarusuario";
-                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.Add(new SqlParameter("@nombre", persona.Nombre));
                 command.Parameters.Add(new SqlParameter("@apellido", persona.Apellido));
                 command.Parameters.Add(new SqlParameter("@email", persona.Email));

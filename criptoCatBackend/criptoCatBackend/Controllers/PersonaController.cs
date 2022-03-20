@@ -5,15 +5,18 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using criptoCatBackend.Models;
+using System.Web.Http.Cors;
 
 namespace criptoCatBackend.Controllers
 {
+    [EnableCors( origins: "https://localhost:4200" , headers: "*" , methods: "*" )]
     public class PersonaController : ApiController
     {
         // GET api/<controller>
         public IEnumerable<Persona> Get()
         {
-            return null;
+            GestorPersona gestor = new GestorPersona();
+            return gestor.ListaPersona();
         }
 
         // GET api/<controller>/5
