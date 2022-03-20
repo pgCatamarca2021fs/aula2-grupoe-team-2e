@@ -164,6 +164,7 @@
     <Compile Include="Controllers\BilleteraController.cs" />
     <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\DetalleOperacionController.cs" />
+    <Compile Include="Controllers\EjemploooController.cs" />
     <Compile Include="Controllers\HistorialCotizacionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MonedaController.cs" />
