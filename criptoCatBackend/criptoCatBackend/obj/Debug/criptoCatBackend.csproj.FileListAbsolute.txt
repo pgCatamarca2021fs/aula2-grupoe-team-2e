@@ -188,6 +188,7 @@ D:\Curso del ISPC\proyecto-cripton\cripto-cat\criptoCatBackend\criptoCatBackend\
 D:\Curso del ISPC\proyecto-cripton\cripto-cat\criptoCatBackend\criptoCatBackend\obj\Debug\criptoCatBackend.csproj.CopyComplete
 D:\Curso del ISPC\proyecto-cripton\cripto-cat\criptoCatBackend\criptoCatBackend\obj\Debug\criptoCatBackend.dll
 D:\Curso del ISPC\proyecto-cripton\cripto-cat\criptoCatBackend\criptoCatBackend\obj\Debug\criptoCatBackend.pdb
+<<<<<<< HEAD
 D:\DEVELOPER FULL STACK\Capacitacion Full Stack Cordoba\aula2-grupoe-team-2e\criptoCatBackend\criptoCatBackend\bin\criptoCatBackend.dll.config
 D:\DEVELOPER FULL STACK\Capacitacion Full Stack Cordoba\aula2-grupoe-team-2e\criptoCatBackend\criptoCatBackend\bin\criptoCatBackend.dll
 D:\DEVELOPER FULL STACK\Capacitacion Full Stack Cordoba\aula2-grupoe-team-2e\criptoCatBackend\criptoCatBackend\bin\criptoCatBackend.pdb
@@ -286,3 +287,5 @@ D:\DEVELOPER FULL STACK\Capacitacion Full Stack Cordoba\aula2-grupoe-team-2e\cri
 D:\DEVELOPER FULL STACK\Capacitacion Full Stack Cordoba\aula2-grupoe-team-2e\criptoCatBackend\criptoCatBackend\bin\System.Web.Cors.dll
 D:\DEVELOPER FULL STACK\Capacitacion Full Stack Cordoba\aula2-grupoe-team-2e\criptoCatBackend\criptoCatBackend\bin\System.Web.Http.Cors.dll
 D:\DEVELOPER FULL STACK\Capacitacion Full Stack Cordoba\aula2-grupoe-team-2e\criptoCatBackend\criptoCatBackend\bin\System.Web.Http.Cors.xml
+=======
+>>>>>>> main

@@ -1,0 +1,63 @@
+<div class="col-12">
+  <div class="Tabla-compra">
+    <h4 class="title">¿Qué quieres Comprar ?</h4>
+    <form>
+    <table class="tabla-contenedor">
+      <tr>
+        <td>
+          <nav class="navbar navbar-expand seleccionar">
+            <a class="nav-link dropdown-toggle link-compra" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Selecione la Cryptomoneda que desea comprar</a>
+            <ul  class="dropdown-menu listado-crypto" aria-labelledby="dropdown03">
+              <li *ngFor="let coin of coins1" class="lista">
+                <input class="circulo" type="radio" 
+                  name="select" 
+                  [id]="coin.name" 
+                  [(ngModel)]="usuarioCompra.coinSelected"
+                  [value]="coin"
+                >
+                <label class="" [for]="coin.name" >
+                  <img [src]="coin.image" [alt]="coin.name" class="rounded-circle" style="width: 2rem;">
+                  {{coin.name}}
+                </label>
+              </li>
+            </ul>
+          </nav>
+        </td>
+      </tr>
+      <tr *ngIf="!!usuarioCompra.coinSelected; else haceEsto " >
+        <td>
+          <img [src]="usuarioCompra.coinSelected.image" [alt]="usuarioCompra.coinSelected.name" class="rounded-circle" style="width: 3rem;">
+        </td>
+        <td> 
+          <h3>{{usuarioCompra.coinSelected.name}}</h3>
+          <h3>Dólares {{usuarioCompra.coinSelected.current_price | currency: 'USD'}}</h3>
+        </td>
+      </tr>
+      <ng-template #haceEsto>
+        <h4 class="mensaje-ayuda">Selecione una moneda arriba.</h4>
+      </ng-template>
+      <tr>
+        <td> <h3>Pesos a Invertir: </h3></td>
+        <td><input class="pesos" type="number" name="cantidadPesos" 
+          [(ngModel)]="usuarioCompra.cantidadPesos"
+          (keyup)="convertionCrypto()"
+          [disabled]="!isDefined()"
+          >
+        </td>
+      </tr>
+      <tr>
+        <td> <h3>Cantidad en criptomonedas</h3></td>
+        <td> <input class="pesos" type="number" name="cantidadCrito" 
+          [(ngModel)]="usuarioCompra.cantidadCripto"
+          [disabled]="!isDefined()"
+          >
+        </td>
+      </tr>
+      <tr>
+        <td> <a class="btn btn-dark btn-lg" routerLink="/usuario/billetera"> Volver </a></td>
+        <td> <a class="btn btn-dark btn-lg" > Comprar </a></td>
+      </tr>
+    </table>
+  </form>
+  </div>
+</div>
