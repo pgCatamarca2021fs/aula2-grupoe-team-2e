@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Usuario } from 'src/app/shared/interfaces/usuario.interface';
+import { UsuarioApiService } from 'src/app/shared/services/usuario-api.service';
 
 @Component({
   selector: 'app-home-page',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  constructor( private usuarioApi: UsuarioApiService) { }
 
   ngOnInit(): void {
+    this.usuarioApi.obtenerTodosU().subscribe(data =>{
+      console.log(data);
+    })
   }
 
 }

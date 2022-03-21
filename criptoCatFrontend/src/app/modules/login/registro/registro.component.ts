@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Usuario } from 'src/app/shared/interfaces/usuario.interface';
+import { UsuarioApiService } from 'src/app/shared/services/usuario-api.service';
 
 @Component({
   selector: 'app-registro',
@@ -7,10 +10,15 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
+
   public dateToday!: string
   formRegistracion: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private usuarioApiService: UsuarioApiService,
+    private router:Router
+  ) { }
 
   ngOnInit() {
     const date: Date = new Date
@@ -51,6 +59,7 @@ export class RegistroComponent implements OnInit {
       dni: new FormControl('',[
         Validators.required,
         Validators.min(9999999),
+        Validators.max(100000000)
       ])
     });
   }
@@ -102,7 +111,14 @@ export class RegistroComponent implements OnInit {
     if (this.formRegistracion.invalid) {
       return
     }
-    console.log("Datos enviados",this.formRegistracion.value);
+    // console.log("Datos enviados",this.formRegistracion.value);
+
+    this.usuarioApiService.crearUsuario(this.formRegistracion.value).subscribe(respuesta =>{
+      console.log(`Datos enviados 🐮 correctamente`);
+    });
+
+    this.router.navigate(['/login/registro']);
+
   }
 
 }

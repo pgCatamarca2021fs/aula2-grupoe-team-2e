@@ -5,6 +5,7 @@ using System.Web;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.Web.Mvc;
 
 namespace criptoCatBackend.Models
 {
@@ -63,5 +64,21 @@ namespace criptoCatBackend.Models
                 command.ExecuteNonQuery();
             }
         }
+
+        public void UsuarioLogin( string email , Usuario loginUsuario)
+        {
+            using (SqlConnection connection = new SqlConnection(this.conectionString))
+            {
+                connection.Open();
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "buscarUsuarioPorMailContrasena";
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add(new SqlParameter("@email", email));
+                command.Parameters.Add(new SqlParameter("@contraseña", loginUsuario.Contraseña));
+                command.ExecuteNonQuery();
+            }
+
+        }
+        
     }
 }
