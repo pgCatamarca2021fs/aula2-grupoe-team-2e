@@ -4,31 +4,30 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using criptoCatBackend.Models;
 
 namespace criptoCatBackend.Controllers
 {
-    public class PersonaController : ApiController
+    public class CuentaController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<Persona> Get()
+        public IEnumerable<string> Get()
         {
-            return null;
+            return new string[] { "value1", "value2" };
         }
 
         // GET api/<controller>/5
-        public Persona Get(int id)
+        public string Get(int id)
         {
-            return new Persona();
+            return "value";
         }
 
         // POST api/<controller>
-        public void Post([FromBody] Persona value)
+        public void Post([FromBody] string value)
         {
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody] Persona value)
+        public void Put(int id, [FromBody] string value)
         {
         }
 
