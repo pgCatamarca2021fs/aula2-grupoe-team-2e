@@ -1,36 +1,32 @@
 <div class="col-12">
   <div class="Tabla-Crypto">
     <div class="tope">
-    <h3>Precios de las Crypstos</h3>
-    <input 
-      type="text" class="form-control my-2" 
-      (keyup)="buscarCrypto()"
-      [(ngModel)]="buscarTexto"
-      />
+      <h3>Precios de las Monedas</h3>
+      <input type="text" class="form-control my-2" (keyup)="buscarCrypto()" [(ngModel)]="buscarTexto" />
     </div>
-  <table class="table">
-    
-    <thead>
-      <tr>
-        <th scope="col">logo</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Simbolo</th>
-        <th scope="col">Precio Actual: ARG</th>
-        <th scope="col">Cambio Ultimas 24h</th>
-        
-      </tr>
-    </thead>
-    <tbody *ngFor="let coin of filtro">
-      <tr>
-        <th><img [src]="coin.image" class="rounded-circle" [alt]="coin.name"style="width: 4rem;"></th>
-        <td>{{coin.name}}</td>
-        <td>{{coin.symbol}}</td>
-        <td>$ {{coin.current_price | argMoney }} </td>
-        <td [ngClass]="coin.price_change_percentage_24h > 0 ? 'text-success': 'text-danger'">
-          {{coin.price_change_percentage_24h}}</td>
-      </tr>
-      <tr>
-    </tbody>
-  </table>
+    <table class="table">
+
+      <thead>
+        <tr>
+          <th scope="col">Logo</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Simbolo</th>
+          <th scope="col">Precio Actual: ARG</th>
+          <th scope="col">Cambio Ultimas 24h</th>
+
+        </tr>
+      </thead>
+      <tbody *ngFor="let coin of filtro">
+        <tr>
+          <th><img [src]="coin.image" class="rounded-circle" [alt]="coin.name" style="width: 4rem;"></th>
+          <td>{{coin.name}}</td>
+          <td>{{coin.symbol}}</td>
+          <td>$ {{coin.current_price | argMoney }} </td>
+          <td [ngClass]="coin.price_change_percentage_24h > 0 ? 'text-success': 'text-danger'">
+            {{coin.price_change_percentage_24h}}</td>
+        </tr>
+        <tr>
+      </tbody>
+    </table>
   </div>
 </div>

@@ -1,60 +1,68 @@
-.Tabla-Crypto{
-    margin: auto;
-    height: auto;
-    background-color: rgb(255, 255, 255);
-    border-radius: 25px;
-    margin: 20px;
-    margin-top: 25px;
-    padding-top: 40px;
-    height: 180px;
+.Tabla-Crypto {
+  margin: auto;
+  height: auto;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+  margin: 20px;
+  margin-top: 25px;
+  padding-top: 40px;
+  height: 180px;
 }
-.Tabla-Crypto,h3{
-    padding-left: 10px;
-    color: black;
+.Tabla-Crypto,
+h3 {
+  padding-left: 10px;
+  color: rgb(0, 0, 0);
 }
-.Tabla-Crypto,h4{
-    padding-left: 15px;
-    color: rgb(45, 255, 4);
+.Tabla-Crypto,
+h4 {
+  padding-left: 15px;
+  color: rgb(0, 0, 0);
 }
-.boton{
-    float: right;
-    text-decoration:none;
-    padding: auto;
-    width: auto;
-    padding: 8px;
-    margin-top: 0px;
-    margin-left: 6px;
-    margin-right: 20px;
-    background-color: rgb(214, 214, 214);
-    color:rgb(65, 63, 63);
-    border-radius: 35px;
+.boton {
+  float: right;
+  text-decoration: none;
+  padding: auto;
+  width: auto;
+  padding: 8px;
+  margin-top: 0px;
+  margin-left: 6px;
+  margin-right: 20px;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  border-radius: 35px;
 }
-.boton:hover{
-    background-color: rgb(0, 0, 0);
-    color:rgb(243, 243, 243);
+.boton:hover {
+  background-color: rgb(0, 0, 0);
+  color: teal;
 }
-.boton:active{
-    background-color: rgb(36, 36, 36);
-    color:rgb(221, 221, 221);
+.boton:active {
+  background-color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
 }
 
-.Billetera{
-    margin: auto;
-    height: auto;
-    background-color: rgb(255, 255, 255);
-    border-radius: 25px;
-    margin: 20px;
-    margin-top: 25px;
-    padding-top: 40px;
-    position: relative;
-    height: 542px;
-    overflow: auto; 
+.Billetera {
+  margin: auto;
+  height: auto;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+  margin: 20px;
+  margin-top: 25px;
+  padding-top: 40px;
+  position: relative;
+  height: 542px;
+  overflow: auto;
 }
-.Billetera,h2{
-    padding-left: 10px;
-    color: black;
+.Billetera,
+h2 {
+  padding-left: 10px;
+  color: rgb(0, 0, 0);
 }
-.table{
-    width:90%;
-    margin-left: 30px;
+.table {
+  width: 90%;
+  margin-left: 30px;
+  color: rgb(0, 0, 0);
+}
+
+#botones {
+  background-color: rgb(0, 0, 0);
 }
