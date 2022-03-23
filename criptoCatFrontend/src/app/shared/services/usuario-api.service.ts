@@ -9,29 +9,28 @@ import { Usuario } from '../interfaces/usuario.interface';
 })
 export class UsuarioApiService {
 
-  private readonly urlUsuario = environment.apiUsuario;
+  private readonly URL = environment.api;
 
   // private urlApiUsuario = 'https://localhost:44315/api/Usuario'
 
   private _dataUsuario: Usuario = {
-    Nombre: '',
-    Apellido: '',
-    Contraseña: '',
-    Dni: '',
-    Email: '',
-    FechaNacimiento: new Date(),
+    nombre: '',
+    apellido: '',
+    contraseña: '',
+    dni: '',
+    email: '',
+    fecha_nacimiento: new Date(),
   }
   
   public get dataUsuario() : Usuario {
     return {...this._dataUsuario};
   }
   
-
   constructor(private http: HttpClient) { }
 
   obtenerTodosU = ():Observable<Usuario[]> => {
     console.log("ajsdasd")
-    return this.http.get<Usuario[]>(`${this.urlUsuario}`)
+    return this.http.get<Usuario[]>(`${this.URL}/Usuario`)
   }
 
   crearUsuario = (dataForm: any): Observable<Usuario> => {
@@ -39,30 +38,20 @@ export class UsuarioApiService {
     const { name , lastName , password , birthday , email , dni} = dataForm
 
     this._dataUsuario = {
-      Nombre: name,
-      Apellido: lastName,
-      Contraseña: password,
-      Dni: dni,
-      Email: email,
-      FechaNacimiento: birthday
+      nombre: name,
+      apellido: lastName,
+      email: email,
+      dni: dni,
+      contraseña: password,
+      fecha_nacimiento: birthday
     }
     
-    return this.http.post<Usuario>(`${this.urlUsuario}`,this._dataUsuario)
+    return this.http.post<Usuario>(`${this.URL}/Usuario`,this._dataUsuario)
       .pipe(
         catchError( err =>{ return this.handleError(err)} )
       );
 
   }
-
-  enviarCredenciales(email:string, password:string):Observable<any>{
-
-    const body={
-      email:email, //test@test.com
-      password:password //12345678
-    }
-
-    return this.http.post<Usuario>(`${this.urlUsuario}/auth/login`,body)
-  };
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

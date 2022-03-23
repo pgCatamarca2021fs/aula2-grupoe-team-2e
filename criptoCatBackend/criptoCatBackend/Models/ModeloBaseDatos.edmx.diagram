@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="95eae252003146c4b3cba2c12e2ec4a4" Name="Diagram1">
+        <EntityTypeShape EntityType="BDCriptoCatModel.billeteras" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCriptoCatModel.cuenta" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCriptoCatModel.detalle_operacion" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCriptoCatModel.moneda" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCriptoCatModel.sysdiagrams" Width="1.5" PointX="3.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCriptoCatModel.tipo_operacion" Width="1.5" PointX="3.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCriptoCatModel.usuario" Width="1.5" PointX="1.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BDCriptoCatModel.usuario_operacion" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="BDCriptoCatModel.FK_billeteras_cuenta" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCriptoCatModel.FK_billeteras_moneda" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCriptoCatModel.FK_cuenta_usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCriptoCatModel.FK_detalle_operacion_moneda" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCriptoCatModel.FK_detalle_operacion_moneda1" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCriptoCatModel.FK_detalle_operacion_tipo_operacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCriptoCatModel.FK_usuario_operacion_detalle_operacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BDCriptoCatModel.FK_usuario_operacion_usuario" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
