@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UsuarioApiService } from 'src/app/shared/services/usuario-api.service';
+import { UsuarioCache } from 'src/app/shared/interfaces/usuarioCache.interface';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { CacheService } from 'src/app/shared/services/cache.service';
 
 
 @Component({
@@ -15,8 +17,11 @@ export class LoginPageComponent implements OnInit {
 
   errorSession : Boolean = false;
 
-  constructor( private usuarioApiService: UsuarioApiService,
-    private router:Router) { }
+  constructor( 
+    private authService: AuthService, 
+    private router:Router,
+    private cacheService: CacheService  
+  ) { }
 
   ngOnInit(): void {
 
@@ -26,7 +31,7 @@ export class LoginPageComponent implements OnInit {
           Validators.required,
           Validators.email,
         ]),
-        password: new FormControl('',[
+        contrasena: new FormControl('',[
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(12)
@@ -37,25 +42,22 @@ export class LoginPageComponent implements OnInit {
   }
 
   enviarLogin():void{
-    const { email , password } = this.formLogin.value;
-    this.usuarioApiService.enviarCredenciales( email , password )
-      .subscribe(response => { //cuando el usuario ingresa credenciales correctas✔✔✔
+    const { email , contrasena } = this.formLogin.value;
+    this.authService.enviarCredenciales( email , contrasena )
+      .subscribe( (response: UsuarioCache) => { //cuando el usuario ingresa credenciales correctas✔✔✔
         //TODO: 200 >= x < 400
-
-        const {tokenSession} = response;
+        if (response == null || response == undefined) {
+          this.errorSession = true;
+          return;
+        }
+        
         this.errorSession = false;
         console.log("Sesión iniciada correcta",response);
 
-        // this.cookie.set("token",tokenSession,3,"/"); //el nombre del token, el token, la duracion y direccion a funcionar(/raiz)
+        this.cacheService.set("usuario",response)
+        this.router.navigate(['/usuario/inicio']); 
 
-        // this.router.navigate(['/login/registro']); //navega hacia login
-
-      }, err =>{
-        //TODO: 400 >= x
-        this.errorSession = true;
-        console.log("Sesión iniciada incorrecta",err.error);
       })
-    // console.log('🐄🐮🐄',dataLogin);
   }
 
 }

@@ -1,0 +1,580 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDCriptoCatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="billeteras">
+          <Key>
+            <PropertyRef Name="id_billetera" />
+          </Key>
+          <Property Name="id_billetera" Type="int" Nullable="false" />
+          <Property Name="id_cuenta" Type="int" />
+          <Property Name="id_moneda" Type="int" />
+          <Property Name="monto_dinero" Type="money" />
+        </EntityType>
+        <EntityType Name="cuenta">
+          <Key>
+            <PropertyRef Name="id_cuenta" />
+          </Key>
+          <Property Name="id_cuenta" Type="int" Nullable="false" />
+          <Property Name="cvu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_usuario" Type="int" />
+        </EntityType>
+        <EntityType Name="detalle_operacion">
+          <Key>
+            <PropertyRef Name="id_detalleoperacion" />
+          </Key>
+          <Property Name="id_detalleoperacion" Type="int" Nullable="false" />
+          <Property Name="moneda_usuario_origen" Type="int" />
+          <Property Name="monto_usuario_origen" Type="int" />
+          <Property Name="monto_requerido" Type="money" />
+          <Property Name="cbu_usuario" Type="int" />
+          <Property Name="id_usuario_destino" Type="int" />
+          <Property Name="id_operacion" Type="int" />
+          <Property Name="moneda_requerida" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'BDCriptoCat.dbo.historial-cotizacion' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="historial-cotizacion">
+          <Property Name="id_historialcotizacion" Type="int" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="valor" Type="money" />
+        </EntityType>-->
+        <EntityType Name="moneda">
+          <Key>
+            <PropertyRef Name="id_moneda" />
+          </Key>
+          <Property Name="id_moneda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="50" />
+          <Property Name="id_historialcotizacion" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tipo-operacion">
+          <Key>
+            <PropertyRef Name="id_operacion" />
+          </Key>
+          <Property Name="id_operacion" Type="int" Nullable="false" />
+          <Property Name="tipo_operacion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="dni" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="contraseña" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="usuario-operacion">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+          <Property Name="id_detalleoperacion" Type="int" />
+        </EntityType>
+        <Association Name="FK_billeteras_cuenta">
+          <End Role="cuenta" Type="Self.cuenta" Multiplicity="0..1" />
+          <End Role="billeteras" Type="Self.billeteras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cuenta">
+              <PropertyRef Name="id_cuenta" />
+            </Principal>
+            <Dependent Role="billeteras">
+              <PropertyRef Name="id_cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_billeteras_moneda">
+          <End Role="moneda" Type="Self.moneda" Multiplicity="0..1" />
+          <End Role="billeteras" Type="Self.billeteras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="moneda">
+              <PropertyRef Name="id_moneda" />
+            </Principal>
+            <Dependent Role="billeteras">
+              <PropertyRef Name="id_moneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cuenta_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="cuenta" Type="Self.cuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="cuenta">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detalle_operacion_moneda">
+          <End Role="moneda" Type="Self.moneda" Multiplicity="0..1" />
+          <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="moneda">
+              <PropertyRef Name="id_moneda" />
+            </Principal>
+            <Dependent Role="detalle_operacion">
+              <PropertyRef Name="moneda_usuario_origen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detalle_operacion_moneda1">
+          <End Role="moneda" Type="Self.moneda" Multiplicity="0..1" />
+          <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="moneda">
+              <PropertyRef Name="id_moneda" />
+            </Principal>
+            <Dependent Role="detalle_operacion">
+              <PropertyRef Name="moneda_requerida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detalle_operacion_tipo-operacion">
+          <End Role="tipo-operacion" Type="Self.tipo-operacion" Multiplicity="0..1" />
+          <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo-operacion">
+              <PropertyRef Name="id_operacion" />
+            </Principal>
+            <Dependent Role="detalle_operacion">
+              <PropertyRef Name="id_operacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-cotizacion', pero no se encuentra la tabla.
+        <Association Name="FK_historial-cotizacion_moneda" />-->
+        <Association Name="FK_usuario-operacion_detalle_operacion">
+          <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="0..1" />
+          <End Role="usuario-operacion" Type="Self.usuario-operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalle_operacion">
+              <PropertyRef Name="id_detalleoperacion" />
+            </Principal>
+            <Dependent Role="usuario-operacion">
+              <PropertyRef Name="id_detalleoperacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuario-operacion_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="usuario-operacion" Type="Self.usuario-operacion" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="usuario-operacion">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDCriptoCatModelStoreContainer">
+          <EntitySet Name="billeteras" EntityType="Self.billeteras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cuenta" EntityType="Self.cuenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalle_operacion" EntityType="Self.detalle_operacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="moneda" EntityType="Self.moneda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipo-operacion" EntityType="Self.tipo-operacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuario-operacion" EntityType="Self.usuario-operacion" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_billeteras_cuenta" Association="Self.FK_billeteras_cuenta">
+            <End Role="cuenta" EntitySet="cuenta" />
+            <End Role="billeteras" EntitySet="billeteras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_billeteras_moneda" Association="Self.FK_billeteras_moneda">
+            <End Role="moneda" EntitySet="moneda" />
+            <End Role="billeteras" EntitySet="billeteras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cuenta_usuario" Association="Self.FK_cuenta_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="cuenta" EntitySet="cuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detalle_operacion_moneda" Association="Self.FK_detalle_operacion_moneda">
+            <End Role="moneda" EntitySet="moneda" />
+            <End Role="detalle_operacion" EntitySet="detalle_operacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detalle_operacion_moneda1" Association="Self.FK_detalle_operacion_moneda1">
+            <End Role="moneda" EntitySet="moneda" />
+            <End Role="detalle_operacion" EntitySet="detalle_operacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detalle_operacion_tipo-operacion" Association="Self.FK_detalle_operacion_tipo-operacion">
+            <End Role="tipo-operacion" EntitySet="tipo-operacion" />
+            <End Role="detalle_operacion" EntitySet="detalle_operacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuario-operacion_detalle_operacion" Association="Self.FK_usuario-operacion_detalle_operacion">
+            <End Role="detalle_operacion" EntitySet="detalle_operacion" />
+            <End Role="usuario-operacion" EntitySet="usuario-operacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuario-operacion_usuario" Association="Self.FK_usuario-operacion_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="usuario-operacion" EntitySet="usuario-operacion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDCriptoCatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="billeteras">
+          <Key>
+            <PropertyRef Name="id_billetera" />
+          </Key>
+          <Property Name="id_billetera" Type="Int32" Nullable="false" />
+          <Property Name="id_cuenta" Type="Int32" />
+          <Property Name="id_moneda" Type="Int32" />
+          <Property Name="monto_dinero" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="cuenta" Relationship="Self.FK_billeteras_cuenta" FromRole="billeteras" ToRole="cuenta" />
+          <NavigationProperty Name="moneda" Relationship="Self.FK_billeteras_moneda" FromRole="billeteras" ToRole="moneda" />
+        </EntityType>
+        <EntityType Name="cuenta">
+          <Key>
+            <PropertyRef Name="id_cuenta" />
+          </Key>
+          <Property Name="id_cuenta" Type="Int32" Nullable="false" />
+          <Property Name="cvu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_usuario" Type="Int32" />
+          <NavigationProperty Name="billeteras" Relationship="Self.FK_billeteras_cuenta" FromRole="cuenta" ToRole="billeteras" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_cuenta_usuario" FromRole="cuenta" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="detalle_operacion">
+          <Key>
+            <PropertyRef Name="id_detalleoperacion" />
+          </Key>
+          <Property Name="id_detalleoperacion" Type="Int32" Nullable="false" />
+          <Property Name="moneda_usuario_origen" Type="Int32" />
+          <Property Name="monto_usuario_origen" Type="Int32" />
+          <Property Name="monto_requerido" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="cbu_usuario" Type="Int32" />
+          <Property Name="id_usuario_destino" Type="Int32" />
+          <Property Name="id_operacion" Type="Int32" />
+          <Property Name="moneda_requerida" Type="Int32" />
+          <NavigationProperty Name="moneda" Relationship="Self.FK_detalle_operacion_moneda" FromRole="detalle_operacion" ToRole="moneda" />
+          <NavigationProperty Name="moneda1" Relationship="Self.FK_detalle_operacion_moneda1" FromRole="detalle_operacion" ToRole="moneda" />
+          <NavigationProperty Name="tipo_operacion" Relationship="Self.FK_detalle_operacion_tipo_operacion" FromRole="detalle_operacion" ToRole="tipo_operacion" />
+          <NavigationProperty Name="usuario_operacion" Relationship="Self.FK_usuario_operacion_detalle_operacion" FromRole="detalle_operacion" ToRole="usuario_operacion" />
+        </EntityType>
+        <EntityType Name="moneda">
+          <Key>
+            <PropertyRef Name="id_moneda" />
+          </Key>
+          <Property Name="id_moneda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_historialcotizacion" Type="Int32" />
+          <NavigationProperty Name="billeteras" Relationship="Self.FK_billeteras_moneda" FromRole="moneda" ToRole="billeteras" />
+          <NavigationProperty Name="detalle_operacion" Relationship="Self.FK_detalle_operacion_moneda" FromRole="moneda" ToRole="detalle_operacion" />
+          <NavigationProperty Name="detalle_operacion1" Relationship="Self.FK_detalle_operacion_moneda1" FromRole="moneda" ToRole="detalle_operacion" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tipo_operacion">
+          <Key>
+            <PropertyRef Name="id_operacion" />
+          </Key>
+          <Property Name="id_operacion" Type="Int32" Nullable="false" />
+          <Property Name="tipo_operacion1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="detalle_operacion" Relationship="Self.FK_detalle_operacion_tipo_operacion" FromRole="tipo_operacion" ToRole="detalle_operacion" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dni" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="contraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cuenta" Relationship="Self.FK_cuenta_usuario" FromRole="usuario" ToRole="cuenta" />
+          <NavigationProperty Name="usuario_operacion" Relationship="Self.FK_usuario_operacion_usuario" FromRole="usuario" ToRole="usuario_operacion" />
+        </EntityType>
+        <EntityType Name="usuario_operacion">
+          <Key>
+            <PropertyRef Name="id_usuario" />
+          </Key>
+          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_detalleoperacion" Type="Int32" />
+          <NavigationProperty Name="detalle_operacion" Relationship="Self.FK_usuario_operacion_detalle_operacion" FromRole="usuario_operacion" ToRole="detalle_operacion" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_usuario_operacion_usuario" FromRole="usuario_operacion" ToRole="usuario" />
+        </EntityType>
+        <Association Name="FK_billeteras_cuenta">
+          <End Role="cuenta" Type="Self.cuenta" Multiplicity="0..1" />
+          <End Role="billeteras" Type="Self.billeteras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cuenta">
+              <PropertyRef Name="id_cuenta" />
+            </Principal>
+            <Dependent Role="billeteras">
+              <PropertyRef Name="id_cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_billeteras_moneda">
+          <End Role="moneda" Type="Self.moneda" Multiplicity="0..1" />
+          <End Role="billeteras" Type="Self.billeteras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="moneda">
+              <PropertyRef Name="id_moneda" />
+            </Principal>
+            <Dependent Role="billeteras">
+              <PropertyRef Name="id_moneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cuenta_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="cuenta" Type="Self.cuenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="cuenta">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detalle_operacion_moneda">
+          <End Role="moneda" Type="Self.moneda" Multiplicity="0..1" />
+          <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="moneda">
+              <PropertyRef Name="id_moneda" />
+            </Principal>
+            <Dependent Role="detalle_operacion">
+              <PropertyRef Name="moneda_usuario_origen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detalle_operacion_moneda1">
+          <End Role="moneda" Type="Self.moneda" Multiplicity="0..1" />
+          <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="moneda">
+              <PropertyRef Name="id_moneda" />
+            </Principal>
+            <Dependent Role="detalle_operacion">
+              <PropertyRef Name="moneda_requerida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detalle_operacion_tipo_operacion">
+          <End Role="tipo_operacion" Type="Self.tipo_operacion" Multiplicity="0..1" />
+          <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_operacion">
+              <PropertyRef Name="id_operacion" />
+            </Principal>
+            <Dependent Role="detalle_operacion">
+              <PropertyRef Name="id_operacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuario_operacion_detalle_operacion">
+          <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="0..1" />
+          <End Role="usuario_operacion" Type="Self.usuario_operacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalle_operacion">
+              <PropertyRef Name="id_detalleoperacion" />
+            </Principal>
+            <Dependent Role="usuario_operacion">
+              <PropertyRef Name="id_detalleoperacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuario_operacion_usuario">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+          <End Role="usuario_operacion" Type="Self.usuario_operacion" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="id_usuario" />
+            </Principal>
+            <Dependent Role="usuario_operacion">
+              <PropertyRef Name="id_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDCriptoCatEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="billeteras" EntityType="Self.billeteras" />
+          <EntitySet Name="cuenta" EntityType="Self.cuenta" />
+          <EntitySet Name="detalle_operacion" EntityType="Self.detalle_operacion" />
+          <EntitySet Name="moneda" EntityType="Self.moneda" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tipo_operacion" EntityType="Self.tipo_operacion" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <EntitySet Name="usuario_operacion" EntityType="Self.usuario_operacion" />
+          <AssociationSet Name="FK_billeteras_cuenta" Association="Self.FK_billeteras_cuenta">
+            <End Role="cuenta" EntitySet="cuenta" />
+            <End Role="billeteras" EntitySet="billeteras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_billeteras_moneda" Association="Self.FK_billeteras_moneda">
+            <End Role="moneda" EntitySet="moneda" />
+            <End Role="billeteras" EntitySet="billeteras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cuenta_usuario" Association="Self.FK_cuenta_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="cuenta" EntitySet="cuenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detalle_operacion_moneda" Association="Self.FK_detalle_operacion_moneda">
+            <End Role="moneda" EntitySet="moneda" />
+            <End Role="detalle_operacion" EntitySet="detalle_operacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detalle_operacion_moneda1" Association="Self.FK_detalle_operacion_moneda1">
+            <End Role="moneda" EntitySet="moneda" />
+            <End Role="detalle_operacion" EntitySet="detalle_operacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detalle_operacion_tipo_operacion" Association="Self.FK_detalle_operacion_tipo_operacion">
+            <End Role="tipo_operacion" EntitySet="tipo_operacion" />
+            <End Role="detalle_operacion" EntitySet="detalle_operacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuario_operacion_detalle_operacion" Association="Self.FK_usuario_operacion_detalle_operacion">
+            <End Role="detalle_operacion" EntitySet="detalle_operacion" />
+            <End Role="usuario_operacion" EntitySet="usuario_operacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuario_operacion_usuario" Association="Self.FK_usuario_operacion_usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="usuario_operacion" EntitySet="usuario_operacion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDCriptoCatModelStoreContainer" CdmEntityContainer="BDCriptoCatEntities">
+          <EntitySetMapping Name="billeteras">
+            <EntityTypeMapping TypeName="BDCriptoCatModel.billeteras">
+              <MappingFragment StoreEntitySet="billeteras">
+                <ScalarProperty Name="id_billetera" ColumnName="id_billetera" />
+                <ScalarProperty Name="id_cuenta" ColumnName="id_cuenta" />
+                <ScalarProperty Name="id_moneda" ColumnName="id_moneda" />
+                <ScalarProperty Name="monto_dinero" ColumnName="monto_dinero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cuenta">
+            <EntityTypeMapping TypeName="BDCriptoCatModel.cuenta">
+              <MappingFragment StoreEntitySet="cuenta">
+                <ScalarProperty Name="id_cuenta" ColumnName="id_cuenta" />
+                <ScalarProperty Name="cvu" ColumnName="cvu" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalle_operacion">
+            <EntityTypeMapping TypeName="BDCriptoCatModel.detalle_operacion">
+              <MappingFragment StoreEntitySet="detalle_operacion">
+                <ScalarProperty Name="id_detalleoperacion" ColumnName="id_detalleoperacion" />
+                <ScalarProperty Name="moneda_usuario_origen" ColumnName="moneda_usuario_origen" />
+                <ScalarProperty Name="monto_usuario_origen" ColumnName="monto_usuario_origen" />
+                <ScalarProperty Name="monto_requerido" ColumnName="monto_requerido" />
+                <ScalarProperty Name="cbu_usuario" ColumnName="cbu_usuario" />
+                <ScalarProperty Name="id_usuario_destino" ColumnName="id_usuario_destino" />
+                <ScalarProperty Name="id_operacion" ColumnName="id_operacion" />
+                <ScalarProperty Name="moneda_requerida" ColumnName="moneda_requerida" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="moneda">
+            <EntityTypeMapping TypeName="BDCriptoCatModel.moneda">
+              <MappingFragment StoreEntitySet="moneda">
+                <ScalarProperty Name="id_moneda" ColumnName="id_moneda" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="id_historialcotizacion" ColumnName="id_historialcotizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BDCriptoCatModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_operacion">
+            <EntityTypeMapping TypeName="BDCriptoCatModel.tipo_operacion">
+              <MappingFragment StoreEntitySet="tipo-operacion">
+                <ScalarProperty Name="id_operacion" ColumnName="id_operacion" />
+                <ScalarProperty Name="tipo_operacion1" ColumnName="tipo_operacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="BDCriptoCatModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario_operacion">
+            <EntityTypeMapping TypeName="BDCriptoCatModel.usuario_operacion">
+              <MappingFragment StoreEntitySet="usuario-operacion">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="id_detalleoperacion" ColumnName="id_detalleoperacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

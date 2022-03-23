@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/shared/interfaces/usuario.interface';
+import { LoaderService } from 'src/app/shared/services/loader.service';
 import { UsuarioApiService } from 'src/app/shared/services/usuario-api.service';
 
 @Component({
@@ -11,16 +12,22 @@ import { UsuarioApiService } from 'src/app/shared/services/usuario-api.service';
 })
 export class RegistroComponent implements OnInit {
 
+  showLoader = false;
+
   public dateToday!: string
   formRegistracion: FormGroup = new FormGroup({});
 
   constructor(
     private formBuilder: FormBuilder, 
     private usuarioApiService: UsuarioApiService,
-    private router:Router
+    private router: Router,
+    private loader: LoaderService
   ) { }
 
   ngOnInit() {
+
+    this.loader.getStatus().subscribe(status => this.showLoader = status);
+
     const date: Date = new Date
     this.dateToday = String(date.getFullYear() + '-' + 
       String(date.getMonth() + 1).padStart(2, '0') + '-' + 
@@ -117,8 +124,7 @@ export class RegistroComponent implements OnInit {
       console.log(`Datos enviados 🐮 correctamente`);
     });
 
-    this.router.navigate(['/login/registro']);
-
+    this.router.navigate(['/login']);
   }
 
 }

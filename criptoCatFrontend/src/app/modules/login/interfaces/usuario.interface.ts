@@ -1,4 +1,4 @@
-export default interface Usuario{
+export default interface UsuarioRegistracion{
     dni?:               string;
     name:               string;
     lastName:           string;
