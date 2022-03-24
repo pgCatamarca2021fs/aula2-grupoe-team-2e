@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faCat } from '@fortawesome/free-solid-svg-icons';
+import { CacheService } from '../services/cache.service';
 
 
 @Component({
@@ -9,8 +10,8 @@ import { faCat } from '@fortawesome/free-solid-svg-icons';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
-  Nombre:string ="";
+  constructor( private cacheService: CacheService ) { }
+   Nombre
   faCat = faCat;
   
   ngOnInit(): void {

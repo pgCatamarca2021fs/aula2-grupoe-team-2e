@@ -29,7 +29,6 @@ export class UsuarioApiService {
   constructor(private http: HttpClient) { }
 
   obtenerTodosU = ():Observable<Usuario[]> => {
-    console.log("ajsdasd")
     return this.http.get<Usuario[]>(`${this.URL}/Usuario`)
   }
 

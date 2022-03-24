@@ -15,4 +15,8 @@ export class CacheService {
     const serialized = JSON.stringify(value);
     localStorage.setItem(key, serialized);
   }
+
+  quit(key: string){
+    localStorage.removeItem(key);
+  }
 }
