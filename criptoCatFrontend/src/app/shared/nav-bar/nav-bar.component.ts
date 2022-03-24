@@ -4,8 +4,6 @@ import { faCat } from '@fortawesome/free-solid-svg-icons';
 import { UsuarioCache } from '../interfaces/usuarioCache.interface';
 import { CacheService } from '../services/cache.service';
 
-
-
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -25,7 +23,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     this.usuario=this.cacheService.get('usuario');
     this.Nombre = this.usuario.nombre;
-    this.cacheService.quit(this.usuario)
+    this.cacheService.quit(this.usuario);
   }
 
 }
