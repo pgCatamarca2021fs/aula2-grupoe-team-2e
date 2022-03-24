@@ -12,32 +12,28 @@
         <span></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav floar-lg-right px-3 ms-auto">
+        <ul  class="navbar-nav floar-lg-right px-3 ms-auto">
+            <div *ngIf="!Nombre; then inicio else cerrar"></div>
+            <ng-template #inicio>
             <li class="navbar-item">
                 <a href="#" class="nav-link" routerLink="/home">Inicio</a>
             </li>
-            <li *ngIf="" class="navbar-item">
+            
+            <li class="navbar-item">
                 <a href="#" class="nav-link" routerLink="/login/registro">Registrar</a>
             </li>
-            <li class="navbar-item">
+            <li  class="navbar-item">
                 <a href="#" class="nav-link" routerLink="/login">Iniciar sesión</a>
             </li>
-
-            <li class="navbar-item">
-                <a href="#" class="nav-link" routerLink="/login">Cerrar sesión</a>
-            </li>
-            <!-- <div class="d-flex">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        ¿Quienes somos?
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#" routerLink="/usuario">MenuDesplegable1</a></li>
-                        <li><a class="dropdown-item" href="#">MenuDesplegable2</a></li>
-                        <li><a class="dropdown-item" href="#">MenuDesplegable3</a></li>
-                    </ul>
+            </ng-template>
+            <ng-template #cerrar>
+                <li  class="navbar-item">
+                    <h2  class="nav-link disabled">Bienvenido {{Nombre}}</h2>
                 </li>
-            </div> -->
+                <li  class="navbar-item">
+                <h3 href="#" class="nav-link" (click)="cerrarSesion()" >Cerrar Sesión</h3>
+                </li>
+            </ng-template>
         </ul>
     </div>
 </nav>
