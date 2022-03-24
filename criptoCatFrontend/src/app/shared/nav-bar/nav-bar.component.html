@@ -18,8 +18,8 @@
             <li class="navbar-item">
                 <a href="#" class="nav-link" routerLink="/home">Inicio</a>
             </li>
-            <li  class="navbar-item">
-            <li *ngIf="" class="navbar-item">
+            
+            <li class="navbar-item">
                 <a href="#" class="nav-link" routerLink="/login/registro">Registrar</a>
             </li>
             <li  class="navbar-item">
@@ -28,10 +28,10 @@
             </ng-template>
             <ng-template #cerrar>
                 <li  class="navbar-item">
-                    <a  class="nav-link disabled">Bienvenido {{Nombre}}</a>
+                    <h2  class="nav-link disabled">Bienvenido {{Nombre}}</h2>
                 </li>
                 <li  class="navbar-item">
-                <h3 href="#" class="nav-link" >Cerrar Sesión</h3>
+                <h3 href="#" class="nav-link" (click)="cerrarSesion()" >Cerrar Sesión</h3>
                 </li>
             </ng-template>
         </ul>
