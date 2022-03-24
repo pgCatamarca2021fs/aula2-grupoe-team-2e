@@ -23,7 +23,6 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     this.usuario=this.cacheService.get('usuario');
     this.Nombre = this.usuario.nombre;
-    this.cacheService.quit(this.usuario);
   }
 
 }
