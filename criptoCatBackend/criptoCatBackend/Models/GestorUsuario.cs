@@ -63,6 +63,22 @@ namespace criptoCatBackend.Models
                 command.Parameters.Add(new SqlParameter("@fechadenacimiento", persona.fecha_nacimiento));
                 command.Parameters.Add(new SqlParameter("@contraseña", persona.contraseña));
                 command.ExecuteNonQuery();
+
+                SqlCommand commandCuenta = connection.CreateCommand();
+                commandCuenta.CommandText = "crearCuenta";
+                commandCuenta.CommandType = CommandType.StoredProcedure;
+                Random cvuRamdon = new Random();
+                int cvuDni = cvuRamdon.Next(10000000, int.Parse(persona.dni));
+                commandCuenta.Parameters.Add(new SqlParameter("@cvu", cvuDni));
+                commandCuenta.Parameters.Add(new SqlParameter("@dni", persona.dni));
+                commandCuenta.ExecuteNonQuery();
+
+                
+                SqlCommand commandBilletera = connection.CreateCommand();
+                commandBilletera.CommandText = "crearBilleteraPesos";
+                commandBilletera.CommandType = CommandType.StoredProcedure;
+                commandBilletera.Parameters.Add(new SqlParameter("@cvu", cvuDni));
+                commandBilletera.ExecuteNonQuery();
             }
         }
 
