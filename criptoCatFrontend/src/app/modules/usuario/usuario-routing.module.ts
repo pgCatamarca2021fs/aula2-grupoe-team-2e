@@ -6,6 +6,7 @@ import { CompraPageComponent } from './pages/compra-page/compra-page.component';
 import { HistorialPageComponent } from './pages/historial-page/historial-page.component';
 import { InicioUsuarioComponent } from './pages/inicio-usuario/inicio-usuario.component';
 import { VentaPageComponent } from './pages/venta-page/venta-page.component';
+import { DepositarPageComponent } from './pages/depositar-page/depositar-page.component';
 
 
 
@@ -13,7 +14,7 @@ const routes: Routes = [
     {
         path: '',
         component: DashboardPageComponent,
-       
+
         children: [
             {
                 path:'inicio',
@@ -36,14 +37,18 @@ const routes: Routes = [
             {
                 path:'vender',
                 component: VentaPageComponent,
-            }
+            },
+            {
+              path:'depositar',
+              component: DepositarPageComponent,
+          }
         ]
     },
     {
         path:'**',
         redirectTo:'/usuario/inicio'
     }
-    
+
 ];
 
 @NgModule({

@@ -4,8 +4,8 @@
             <app-logo></app-logo>
         </div>
     </div>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" 
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
         aria-expanded="false" aria-label="Toggle navigation">
         <span></span>
         <span></span>
@@ -13,12 +13,12 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul  class="navbar-nav floar-lg-right px-3 ms-auto">
-            <div *ngIf="!Nombre; then inicio else cerrar"></div>
+            <div *ngIf="!nombre; then inicio else cerrar"></div>
             <ng-template #inicio>
             <li class="navbar-item">
                 <a href="#" class="nav-link" routerLink="/home">Inicio</a>
             </li>
-            
+
             <li class="navbar-item">
                 <a href="#" class="nav-link" routerLink="/login/registro">Registrar</a>
             </li>
@@ -28,7 +28,7 @@
             </ng-template>
             <ng-template #cerrar>
                 <li  class="navbar-item">
-                    <h2  class="nav-link disabled">Bienvenido {{Nombre}}</h2>
+                    <h2  class="nav-link disabled">Bienvenido {{nombre}}</h2>
                 </li>
                 <li  class="navbar-item">
                 <h3 href="#" class="nav-link" (click)="cerrarSesion()" >Cerrar Sesión</h3>

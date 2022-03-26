@@ -1,8 +1,8 @@
 <div class="col-12">
   <div class="Tabla-Crypto">
     <h3>Billetera</h3>
-    <h4>$ 1234567,123</h4>
-    <a href="#" class="btn btn-dark btn-lg boton"> Depositar </a>
+    <h4>{{pesosaldoarg}}</h4>
+    <a routerLink="/usuario/depositar" href="#" class="btn btn-dark btn-lg boton"> Depositar </a>
     <a routerLink="/usuario/vender" href="#" class="btn btn-dark btn-lg boton"> Vender </a>
     <a routerLink="/usuario/compra" href="#" class="btn btn-dark btn-lg boton"> Comprar </a>
     <a href="#" class="btn btn-dark btn-lg boton"> Transferir </a>
@@ -56,7 +56,7 @@
             <h3>$0,00000001</h3>
           </td>
           <td>
-            <a href="#" class="btn btn-dark btn-lg disabled" id="botones"> Depositar </a>
+            <a routerLink="/usuario/depositar"href="#" class="btn btn-dark btn-lg disabled" id="botones"> Depositar </a>
             <a routerLink="/usuario/compra" class="btn btn-dark btn-lg" id="botones"> Comprar </a>
             <a href="#" class="btn btn-dark btn-lg disabled" id="botones"> Transferir </a>
           </td>
