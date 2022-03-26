@@ -8,8 +8,22 @@ import { Component, OnInit } from '@angular/core';
 export class HistorialPageComponent implements OnInit {
 
   constructor() { }
-
-  ngOnInit() {
-  }
+    historial=[{
+    operacion:'compra',
+    moneda: 'bitcoin',
+    cantidad: '0.000123',
+    monto:'12000',
+    cbu:'-',
+    fecha: '20/03/2020'
+  },
+  {
+    operacion:'compra',
+    moneda: 'bitcoin',
+    cantidad: '0.000123',
+    monto:'12000',
+    cbu:'-',
+    fecha: '20/03/2020'
+  }]
+  ngOnInit() {}
 
 }

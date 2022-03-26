@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiDatosDeCryptosService } from '../../services/apiDatosDeCryptos.service';
 import Coin from '../../interfaces/interfaceCoin';
 import FormCompra from '../../interfaces/interfaceCompra';
+import { CacheService } from 'src/app/shared/services/cache.service';
 
 
 @Component({
@@ -30,9 +31,9 @@ export class CompraPageComponent implements OnInit {
     return defined;
   }
 
-  constructor( private apiDatosDeCryptosServices:ApiDatosDeCryptosService) { }
-
+  constructor( private apiDatosDeCryptosServices:ApiDatosDeCryptosService, private cacheService: CacheService) { }
   ngOnInit(){
+    
     console.log(this.isDefined());
     this.apiDatosDeCryptosServices.datosCrypto()
       .subscribe( response => {
