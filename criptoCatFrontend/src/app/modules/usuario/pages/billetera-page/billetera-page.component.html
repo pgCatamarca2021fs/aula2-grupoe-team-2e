@@ -1,69 +1,66 @@
 <div class="col-12">
   <div class="Tabla-Crypto">
     <h3>Billetera</h3>
-    <h4>$ 1234567,123</h4>
-    <a href="#" class="btn btn-dark btn-lg boton"> Depositar </a>
+    <h4>${{pesosaldoarg}} Pesos Argentinos</h4>
+    <a routerLink="/usuario/depositar" href="#" class="btn btn-dark btn-lg boton"> Depositar </a>
     <a routerLink="/usuario/vender" href="#" class="btn btn-dark btn-lg boton"> Vender </a>
     <a routerLink="/usuario/compra" href="#" class="btn btn-dark btn-lg boton"> Comprar </a>
     <a href="#" class="btn btn-dark btn-lg boton"> Transferir </a>
   </div>
   <div class="Billetera">
-    <h2>Todas Mis Monedas</h2>
-
+    <div *ngIf="!billeteras; then noposee else mostrar"></div>
+    <ng-template #noposee>
     <table class="table">
-
       <thead>
         <tr>
           <th scope="col"></th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Opciones</th>
-
-
+          <th scope="col">Moneda</th>
+          <th scope="col">Cantidad</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th><img src="../../assets/dashboard/404-gato.png" class="rounded-circle" style="width: 4rem;"></th>
-          <td>
-            <h3>Lo sentimos, usted no posee ninguna moneda!</h3>
-          </td>
+            <th>
+              <img src="../../assets/dashboard/404-gato.png" class="rounded-circle" style="width: 4rem;">
+            </th>
+            <td>
+              <h3>Lo sentimos, usted no posee ninguna moneda!</h3>
+            </td>
           <td> <a routerLink="/usuario/compra" class="btn btn-dark btn-lg" id="botones"> Comprar </a></td>
-
         </tr>
-        <tr>
       </tbody>
+
     </table>
-
+    </ng-template>
+    <ng-template #mostrar>
+    <h2>Todas Mis Monedas</h2>
     <table class="table">
-
       <thead>
         <tr>
           <th scope="col"></th>
           <th scope="col">Nombre</th>
-          <th scope="col">Valor</th>
+          <th scope="col">Cantidad</th>
           <th scope="col">Opciones</th>
-
-
         </tr>
       </thead>
-      <tbody>
+      <tbody class="table"  *ngFor="let billetera of billeteras">
         <tr>
           <th><img src="../../assets/dashboard/404-gato.png" class="rounded-circle" style="width: 4rem;"></th>
           <td>
-            <h3>Crypoto gato</h3>
+            <h3>{{billetera.moneda?.tipo | uppercase}}</h3>
           </td>
           <td>
-            <h3>$0,00000001</h3>
+            <h3>{{billetera.monto_dinero}}</h3>
           </td>
           <td>
-            <a href="#" class="btn btn-dark btn-lg disabled" id="botones"> Depositar </a>
+            <a routerLink="/usuario/depositar"class="btn btn-dark btn-lg disabled" id="botones"> Depositar </a>
             <a routerLink="/usuario/compra" class="btn btn-dark btn-lg" id="botones"> Comprar </a>
             <a href="#" class="btn btn-dark btn-lg disabled" id="botones"> Transferir </a>
           </td>
-
         </tr>
         <tr>
       </tbody>
     </table>
+  </ng-template>
   </div>
 </div>
