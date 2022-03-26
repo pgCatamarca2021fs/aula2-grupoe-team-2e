@@ -1,0 +1,30 @@
+<div class="col-12">
+  <div class="Tabla-compra">
+    <h4 class="title">Deposita Efectivo !!!!!</h4>
+    <form>
+    <table class="tabla-contenedor">
+      <tr>
+        <td>
+          <h3>{{pesosSaldoArgs}}</h3>
+        </td>
+        <td>
+          <h3>Pesos Argentinos</h3>
+        </td>
+      </tr>
+      <ng-template #haceEsto>
+        <h4 class="mensaje-ayuda">Selecione una moneda arriba.</h4>
+      </ng-template>
+      <tr>
+        <td> <h3>Pesos a Depositar </h3></td>
+        <td><input class="pesos" type="number" name="cantidadPesos"
+          >
+        </td>
+      </tr>
+      <tr>
+        <td> <a class="btn btn-dark btn-lg" routerLink="/usuario/billetera"> Volver </a></td>
+        <td> <a class="btn btn-dark btn-lg" > Depositar </a></td>
+      </tr>
+    </table>
+  </form>
+  </div>
+</div>

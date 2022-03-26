@@ -1,5 +1,4 @@
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { CacheInterceptor } from "./cache-interceptor";
 import { ErrorInterceptor } from "./error-interceptor";
 import { ForceHttpsInterceptor } from "./force-https-interceptor";
 import { HeaderInterceptor } from "./headers-interceptor";
