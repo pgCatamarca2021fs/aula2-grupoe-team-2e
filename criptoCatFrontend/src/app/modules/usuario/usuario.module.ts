@@ -10,6 +10,7 @@ import { BilleteraPageComponent } from './pages/billetera-page/billetera-page.co
 import { RouterModule } from '@angular/router';
 import { CompraPageComponent } from './pages/compra-page/compra-page.component';
 import { VentaPageComponent } from './pages/venta-page/venta-page.component';
+import { HistorialPageComponent } from './pages/historial-page/historial-page.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { VentaPageComponent } from './pages/venta-page/venta-page.component';
     InicioUsuarioComponent,
     BilleteraPageComponent,
     CompraPageComponent,
-    VentaPageComponent
+    VentaPageComponent,
+    HistorialPageComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,4 @@
-.table-section{
+.table-section {
     margin: auto;
     height: auto;
     background-color: rgb(255, 255, 255);
@@ -9,23 +9,21 @@
     height: auto;
 }
 
-.container-table{
+.container-table {
     width: 95%;
     background: white;
     margin: auto;
     box-shadow: 0 0 20px #333;
-
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: 50px;
     border-radius: 25px;
 }
 
-.title{
+.title {
     grid-column-start: 1;
-    grid-column-end: 4;
-
-    background: rgba(40,65,120,1);
+    grid-column-end: 7;
+    background: rgba(40, 65, 120, 1);
     color: white;
     display: flex;
     justify-content: center;
@@ -35,16 +33,20 @@
     border-start-start-radius: 25px;
     border-top-right-radius: 25px;
 }
-.table-header, .table-item{
+
+.table-header,
+.table-item {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.table-header{
+
+.table-header {
     font-weight: bold;
     font-size: 1.5em;
 }
-.table-item{
+
+.table-item {
     padding: 10px;
     font-size: 1.2em;
     border-top: 1px solid #333;

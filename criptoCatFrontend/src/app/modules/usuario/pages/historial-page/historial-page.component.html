@@ -1,17 +1,19 @@
 <section class="table-section">
-  <div class="container-table">
-    <div class="title">MOVIMIENTOS</div>
-    <div class="table-header">OPERACION</div>
-    <div class="table-header">MONTO</div>
-    <div class="table-header">FECHA</div>
-    <div class="table-item">COMPRA</div>
-    <div class="table-item">12</div>
-    <div class="table-item">las lomas</div>
-    <div class="table-item">VENTA</div>
-    <div class="table-item">45</div>
-    <div class="table-item">las juntas</div>
-    <div class="table-item">COMPRA</div>
-    <div class="table-item">89</div>
-    <div class="table-item">la puerta</div>
-  </div><br>
+    <div class="container-table">
+        <div class="title">MOVIMIENTOS</div>
+        <div class="table-header">OPERACION</div>
+        <div class="table-header">MONEDA</div>
+        <div class="table-header">CANTIDAD</div>
+        <div class="table-header">MONTO</div>
+        <div class="table-header">CBU/CVU</div>
+        <div class="table-header">FECHA</div>
+        <ng-container *ngFor="let operacion of historial">
+            <div class="table-item">{{operacion.operacion}}</div>
+            <div class="table-item">{{operacion.moneda}}</div>
+            <div class="table-item">{{operacion.cantidad}}</div>
+            <div class="table-item">{{operacion.monto}}</div>
+            <div class="table-item">{{operacion.cbu}}</div>
+            <div class="table-item">{{operacion.fecha}}</div>
+        </ng-container>
+    </div><br>
 </section>
