@@ -25,7 +25,6 @@ export class DashboardPageComponent{
   coins2: Coin[] = []
   coins3: Coin[] = []
   constructor(private http: HttpClient, private cacheService: CacheService) { }
-  Nombre: string='';
   usuario: any|UsuarioCache='';
   ngOnInit(){
     this.http.get<Coin[]>('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin%2Cethereum%2Cmonero%2Ctether%2Cbinancecoin%2Cusd-coin%2Ccardano%2Cdogecoin%2Cbitcoin-cash&order=market_cap_desc&per_page=100&page=1&sparkline=false')
@@ -42,8 +41,8 @@ export class DashboardPageComponent{
 
       },
     (err) => console.log(err));
-    this.usuario=this.cacheService.usuarioCache;
-    this.Nombre = this.usuario.nombre;
+    this.usuario=this.cacheService.usuarioCache.nombre;
+
   }
 
 }

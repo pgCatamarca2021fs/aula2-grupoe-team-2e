@@ -25,6 +25,15 @@ export class CacheService {
     else
       this._usuarioCache;
   }
+
+  getDevolver(key:string): UsuarioCache | null {
+    const serialized = localStorage.getItem(key);
+    if(serialized != null)
+      return JSON.parse(serialized);
+    else
+      return serialized;
+  }
+
   set(key:string, value: object) {
     const serialized = JSON.stringify(value);
     localStorage.setItem(key, serialized);
