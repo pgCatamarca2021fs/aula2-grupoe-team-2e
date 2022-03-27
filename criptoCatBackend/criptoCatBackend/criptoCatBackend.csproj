@@ -193,6 +193,9 @@
       <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GestorUsuario.cs" />
+    <Compile Include="Models\Coin.cs" />
+    <Compile Include="Models\FormOperacion.cs" />
+    <Compile Include="Models\GestorOperaciones.cs" />
     <Compile Include="Models\ModeloBaseDatos.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -296,6 +299,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Billetera\" />
+    <Folder Include="Views\Default\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>

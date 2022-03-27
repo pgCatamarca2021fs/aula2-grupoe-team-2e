@@ -1,7 +1,8 @@
 import Coin from "./interfaceCoin";
 
-export default  interface FormCompra{
-    coinSelected:any;
+export default  interface FormOperacion{
+    coinSelected?: Coin;
     cantidadPesos: number;
     cantidadCripto: number;
+    tipoOperacion: string;
 }

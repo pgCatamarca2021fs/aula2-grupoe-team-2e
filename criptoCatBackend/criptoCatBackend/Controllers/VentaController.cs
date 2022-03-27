@@ -4,11 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using criptoCatBackend.Models;
 
 namespace criptoCatBackend.Controllers
 {
-    public class UsuarioOperacionController : ApiController
+    public class VentaController : ApiController
     {
         // GET api/<controller>
         public IEnumerable<string> Get()
@@ -25,13 +24,6 @@ namespace criptoCatBackend.Controllers
         // POST api/<controller>
         public void Post([FromBody] string value)
         {
-        }
-
-        // POST api/<controller>/1
-        public void Post(int id, [FromBody] FormOperacion datosEntrada)
-        {
-            GestorOperaciones gestor = new GestorOperaciones();
-            gestor.CrearOperacion(id, datosEntrada);
         }
 
         // PUT api/<controller>/5
