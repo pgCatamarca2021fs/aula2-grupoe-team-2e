@@ -9,23 +9,23 @@
                             <a class="nav-link dropdown-toggle link-compra" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Selecione la Cryptomoneda que desea comprar</a>
                             <ul class="dropdown-menu listado-crypto" aria-labelledby="dropdown03">
                                 <li *ngFor="let coin of coins1" class="lista">
-                                    <input class="circulo" type="radio" name="select" [id]="coin.name" [(ngModel)]="usuarioCompra.coinSelected" [value]="coin">
                                     <label class="" [for]="coin.name">
-                  <img [src]="coin.image" [alt]="coin.name" class="rounded-circle" style="width: 2rem;">
-                  {{coin.name}}
-                </label>
+                                        <img [src]="coin.image" [alt]="coin.name" class="rounded-circle" style="width: 2rem;">
+                                        {{coin.name}}
+                                    </label>
+                                    <input class="circulo" type="radio" name="select" [id]="coin.name" [(ngModel)]="usuarioCompra.coinSelected" [value]="coin">
                                 </li>
                             </ul>
                         </nav>
                     </td>
                 </tr>
-                <tr *ngIf="!!usuarioCompra.coinSelected; else haceEsto ">
+                <tr *ngIf="usuarioCompra.coinSelected?.id; else haceEsto ">
                     <td>
-                        <img [src]="usuarioCompra.coinSelected.image" [alt]="usuarioCompra.coinSelected.name" class="rounded-circle" style="width: 3rem;">
+                        <img [src]="usuarioCompra.coinSelected?.image" [alt]="usuarioCompra.coinSelected?.name" class="rounded-circle" style="width: 3rem;">
                     </td>
                     <td>
-                        <h3>{{usuarioCompra.coinSelected.name}}</h3>
-                        <h3>Dólares {{usuarioCompra.coinSelected.current_price | currency: 'USD'}}</h3>
+                        <h3>{{usuarioCompra.coinSelected?.name}}</h3>
+                        <h3>Dólares {{usuarioCompra.coinSelected?.current_price | currency: 'USD'}}</h3>
                     </td>
                 </tr>
                 <ng-template #haceEsto>
@@ -49,7 +49,7 @@
                 </tr>
                 <tr>
                     <td> <a class="btn btn-dark btn-lg" routerLink="/usuario/billetera"> Volver </a></td>
-                    <td> <a class="btn btn-dark btn-lg"> Comprar </a></td>
+                    <td> <button type="submit" (click)="onComprar()" class="btn btn-dark btn-lg"> Comprar </button></td>
                 </tr>
             </table>
         </form>

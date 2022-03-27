@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiDatosDeCryptosService } from '../../services/apiDatosDeCryptos.service';
 import Coin from '../../interfaces/interfaceCoin';
-import FormCompra from '../../interfaces/interfaceCompra';
+import FormOperacion from '../../interfaces/interfaceCompra';
 import { CacheService } from 'src/app/shared/services/cache.service';
+import { MonedaEjemplo } from 'src/app/shared/class/monedaEjemplo';
 
 
 @Component({
@@ -12,10 +13,13 @@ import { CacheService } from 'src/app/shared/services/cache.service';
 })
 export class CompraPageComponent implements OnInit {
 
-  usuarioCompra: FormCompra = {
-    coinSelected: '',
+  private monedaVacia= new MonedaEjemplo();
+
+  usuarioCompra: FormOperacion = {
+    coinSelected: this.monedaVacia.monedaEjemplo,
     cantidadPesos : 0,
     cantidadCripto : 0,
+    tipoOperacion : 'COMPRA'
   }
   
   coins1: Coin[] = []
@@ -23,11 +27,11 @@ export class CompraPageComponent implements OnInit {
   convertionCrypto(){
     console.log(this.usuarioCompra.coinSelected?.current_price) //valor en dolar
     this.usuarioCompra.cantidadCripto = this.usuarioCompra.cantidadPesos/108,56; // se pasa de peso a dolar
-    this.usuarioCompra.cantidadCripto =  this.usuarioCompra.cantidadCripto / this.usuarioCompra.coinSelected?.current_price;
+    this.usuarioCompra.cantidadCripto =  this.usuarioCompra.cantidadCripto / this.usuarioCompra.coinSelected?.current_price!;
   }
 
   isDefined = () => {
-    const defined: boolean = Boolean(this.usuarioCompra.coinSelected);
+    const defined: boolean = Boolean(this.usuarioCompra.coinSelected?.id);
     return defined;
   }
 
@@ -39,5 +43,9 @@ export class CompraPageComponent implements OnInit {
       .subscribe( response => {
         this.coins1 = response;
       });
+  }
+
+  onComprar = () =>{
+    console.log(this.usuarioCompra);
   }
 }
