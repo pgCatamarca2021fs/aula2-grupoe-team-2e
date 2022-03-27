@@ -7,6 +7,7 @@ import { HistorialPageComponent } from './pages/historial-page/historial-page.co
 import { InicioUsuarioComponent } from './pages/inicio-usuario/inicio-usuario.component';
 import { VentaPageComponent } from './pages/venta-page/venta-page.component';
 import { DepositarPageComponent } from './pages/depositar-page/depositar-page.component';
+import { TransferirPageComponent } from './pages/transferir-page/transferir-page.component';
 
 
 
@@ -39,9 +40,13 @@ const routes: Routes = [
                 component: VentaPageComponent,
             },
             {
-              path:'depositar',
-              component: DepositarPageComponent,
-          }
+                path:'depositar',
+                component: DepositarPageComponent,
+            },
+            {
+                path:'transferir',
+                component: TransferirPageComponent,
+            },
         ]
     },
     {
