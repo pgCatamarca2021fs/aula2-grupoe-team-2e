@@ -12,6 +12,7 @@ import { CompraPageComponent } from './pages/compra-page/compra-page.component';
 import { VentaPageComponent } from './pages/venta-page/venta-page.component';
 import { HistorialPageComponent } from './pages/historial-page/historial-page.component';
 import { DepositarPageComponent } from './pages/depositar-page/depositar-page.component';
+import { TransferirPageComponent } from './pages/transferir-page/transferir-page.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { DepositarPageComponent } from './pages/depositar-page/depositar-page.co
     CompraPageComponent,
     VentaPageComponent,
     HistorialPageComponent,
-    DepositarPageComponent
+    DepositarPageComponent,
+    TransferirPageComponent
   ],
   imports: [
     CommonModule,

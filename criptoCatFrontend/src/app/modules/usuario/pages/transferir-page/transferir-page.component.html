@@ -1,0 +1,51 @@
+<div class="col-12">
+    <div class="Tabla-transferencia">
+        <h4 class="title">¿Qué moneda desea Transferir ?</h4>
+        <form>
+            <table class="tabla-contenedor">
+                <tr>
+                    <td>
+                        <nav class="navbar navbar-expand seleccionar">
+                            <a class="nav-link dropdown-toggle link-tranferencia" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Selecione la Cryptomoneda.</a>
+                            <ul class="dropdown-menu listado-crypto" aria-labelledby="dropdown03">
+                                <li *ngFor="let coin of coins1" class="lista">
+                                    <input class="circulo" type="radio" name="select" [id]="coin.name" [(ngModel)]="usuarioTransferencia.coinSelected" [value]="coin">
+                                    <label class="" [for]="coin.name">
+                  <img [src]="coin.image" [alt]="coin.name" class="rounded-circle" style="width: 2rem;">
+                  {{coin.name}}
+                </label>
+                                </li>
+                            </ul>
+                        </nav>
+                    </td>
+                    <td *ngIf="!!usuarioTransferencia.coinSelected">
+                        <img [src]="usuarioTransferencia.coinSelected.image" [alt]="usuarioTransferencia.coinSelected.name" class="rounded-circle" style="width: 3rem;">
+                        <h3>{{usuarioTransferencia.coinSelected.name}}</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3>Cantidad: </h3>
+                    </td>
+                    <td>
+                        <tr>
+                            <input class="pesos" type="number" min="0" name="cantidadPesos">
+                        </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3>Destinatario</h3>
+                    </td>
+                    <td> <label>Ingresa CVU</label><br>
+                        <input class="pesos" type="number" min="0" name="cantidadCrito">
+                    </td>
+                </tr>
+                <tr>
+                    <td> <a class="btn btn-dark btn-lg" routerLink="/usuario/billetera"> Volver </a></td>
+                    <td> <a class="btn btn-dark btn-lg"> Transferir </a></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
