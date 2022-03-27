@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UsuarioCache } from 'src/app/shared/interfaces/usuarioCache.interface';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CacheService } from 'src/app/shared/services/cache.service';
+import { NombreServiceService } from 'src/app/shared/services/nombreService.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class LoginPageComponent implements OnInit {
   constructor( 
     private authService: AuthService, 
     private router:Router,
-    private cacheService: CacheService  
+    private cacheService: CacheService,
+    private nombreServiceService: NombreServiceService 
   ) { }
 
   ngOnInit(): void {
@@ -54,7 +56,9 @@ export class LoginPageComponent implements OnInit {
         this.errorSession = false;
         console.log("Sesión iniciada correcta",response);
 
-        this.cacheService.set("usuario",response)
+        this.cacheService.set("usuario",response);
+        let usuario: UsuarioCache | null = this.cacheService.getDevolver('usuario');
+        this.nombreServiceService.Nombre$.emit(usuario?.nombre);
         this.router.navigate(['/usuario/inicio']); 
 
       })
