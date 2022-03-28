@@ -193,6 +193,7 @@
     <Compile Include="Models\detalle_operacion.cs">
       <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GestorBilletera.cs" />
     <Compile Include="Models\GestorUsuario.cs" />
     <Compile Include="Models\Coin.cs" />
     <Compile Include="Models\FormOperacion.cs" />

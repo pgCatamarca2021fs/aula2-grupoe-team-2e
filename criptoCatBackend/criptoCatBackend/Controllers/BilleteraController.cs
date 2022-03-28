@@ -1,4 +1,5 @@
-﻿using System;
+﻿using criptoCatBackend.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -16,9 +17,10 @@ namespace criptoCatBackend.Controllers
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        public IEnumerable<billeteras> Get(int id)
         {
-            return "value";
+            GestorBilletera gestor = new GestorBilletera();
+            return gestor.ListarBilleteras(id);
         }
 
         // POST api/<controller>
