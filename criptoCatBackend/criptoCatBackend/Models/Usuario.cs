@@ -18,6 +18,7 @@ namespace criptoCatBackend.Models
         public usuario()
         {
             this.cuenta = new HashSet<cuenta>();
+            this.usuario_operacion = new HashSet<usuario_operacion>();
         }
     
         public int id_usuario { get; set; }
@@ -30,6 +31,7 @@ namespace criptoCatBackend.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cuenta> cuenta { get; set; }
-        public virtual usuario_operacion usuario_operacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<usuario_operacion> usuario_operacion { get; set; }
     }
 }

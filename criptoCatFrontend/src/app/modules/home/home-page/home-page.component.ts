@@ -11,6 +11,10 @@ export class HomePageComponent implements OnInit {
 
   constructor( private usuarioApi: UsuarioApiService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.usuarioApi.obtenerTodosU().subscribe( data =>{
+      console.log(data);
+    })
+  }
 
 }

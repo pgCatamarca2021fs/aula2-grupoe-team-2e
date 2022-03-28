@@ -184,49 +184,52 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BDCryptoCat.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDCryptoCat.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDCryptoCat.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDCryptoCat.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BDCryptoCat.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDCryptoCat.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\billeteras.cs">
-      <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
+      <DependentUpon>BDCryptoCat.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\cuenta.cs">
-      <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
+      <DependentUpon>BDCryptoCat.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\detalle_operacion.cs">
-      <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
+      <DependentUpon>BDCryptoCat.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GestorBilletera.cs" />
     <Compile Include="Models\GestorUsuario.cs" />
     <Compile Include="Models\Coin.cs" />
     <Compile Include="Models\FormOperacion.cs" />
     <Compile Include="Models\GestorOperaciones.cs" />
-    <Compile Include="Models\ModeloBaseDatos.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloBaseDatos.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModeloBaseDatos.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModeloBaseDatos.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloBaseDatos.edmx</DependentUpon>
+    <Compile Include="Models\historial_cotizacion.cs">
+      <DependentUpon>BDCryptoCat.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\moneda.cs">
-      <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
+      <DependentUpon>BDCryptoCat.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
+      <DependentUpon>BDCryptoCat.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tipo_operacion.cs">
-      <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
+      <DependentUpon>BDCryptoCat.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Usuario.cs">
-      <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
+    <Compile Include="Models\usuario.cs">
+      <DependentUpon>BDCryptoCat.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usuario_operacion.cs">
-      <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
+      <DependentUpon>BDCryptoCat.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -239,15 +242,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\ModeloBaseDatos.Context.tt">
+    <Content Include="Models\BDCryptoCat.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModeloBaseDatos.Context.cs</LastGenOutput>
-      <DependentUpon>ModeloBaseDatos.edmx</DependentUpon>
+      <DependentUpon>BDCryptoCat.edmx</DependentUpon>
+      <LastGenOutput>BDCryptoCat.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ModeloBaseDatos.tt">
+    <Content Include="Models\BDCryptoCat.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloBaseDatos.edmx</DependentUpon>
-      <LastGenOutput>ModeloBaseDatos.cs</LastGenOutput>
+      <DependentUpon>BDCryptoCat.edmx</DependentUpon>
+      <LastGenOutput>BDCryptoCat.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -270,12 +273,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\ModeloBaseDatos.edmx">
+    <EntityDeploy Include="Models\BDCryptoCat.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModeloBaseDatos.Designer.cs</LastGenOutput>
+      <LastGenOutput>BDCryptoCat.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\ModeloBaseDatos.edmx.diagram">
-      <DependentUpon>ModeloBaseDatos.edmx</DependentUpon>
+    <Content Include="Models\BDCryptoCat.edmx.diagram">
+      <DependentUpon>BDCryptoCat.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

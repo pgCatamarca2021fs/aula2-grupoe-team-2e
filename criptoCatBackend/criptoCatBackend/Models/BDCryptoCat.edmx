@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="id_billetera" />
           </Key>
-          <Property Name="id_billetera" Type="int" Nullable="false" />
+          <Property Name="id_billetera" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_cuenta" Type="int" />
           <Property Name="id_moneda" Type="int" />
           <Property Name="monto_dinero" Type="money" />
@@ -18,30 +18,32 @@
           <Key>
             <PropertyRef Name="id_cuenta" />
           </Key>
-          <Property Name="id_cuenta" Type="int" Nullable="false" />
-          <Property Name="cvu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_cuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cvu" Type="int" Nullable="false" />
           <Property Name="id_usuario" Type="int" />
         </EntityType>
         <EntityType Name="detalle_operacion">
           <Key>
             <PropertyRef Name="id_detalleoperacion" />
           </Key>
-          <Property Name="id_detalleoperacion" Type="int" Nullable="false" />
+          <Property Name="id_detalleoperacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="moneda_usuario_origen" Type="int" />
-          <Property Name="monto_usuario_origen" Type="int" />
-          <Property Name="monto_requerido" Type="money" />
+          <Property Name="monto_usuario_origen" Type="money" />
+          <Property Name="monto_requerido" Type="float" />
           <Property Name="cbu_usuario" Type="int" />
           <Property Name="id_usuario_destino" Type="int" />
           <Property Name="id_operacion" Type="int" />
           <Property Name="moneda_requerida" Type="int" />
+          <Property Name="id_usuario_operacion" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'BDCriptoCat.dbo.historial-cotizacion' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="historial-cotizacion">
-          <Property Name="id_historialcotizacion" Type="int" />
+          <Key>
+            <PropertyRef Name="id_historialcotizacion" />
+          </Key>
+          <Property Name="id_historialcotizacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fecha" Type="date" />
           <Property Name="valor" Type="money" />
-        </EntityType>-->
+        </EntityType>
         <EntityType Name="moneda">
           <Key>
             <PropertyRef Name="id_moneda" />
@@ -64,7 +66,7 @@ advertencia 6013: La tabla o vista 'BDCriptoCat.dbo.historial-cotizacion' no tie
           <Key>
             <PropertyRef Name="id_operacion" />
           </Key>
-          <Property Name="id_operacion" Type="int" Nullable="false" />
+          <Property Name="id_operacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tipo_operacion" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="usuario">
@@ -81,12 +83,12 @@ advertencia 6013: La tabla o vista 'BDCriptoCat.dbo.historial-cotizacion' no tie
         </EntityType>
         <EntityType Name="usuario-operacion">
           <Key>
-            <PropertyRef Name="id_usuario" />
+            <PropertyRef Name="id_usuario_operacion" />
           </Key>
-          <Property Name="id_usuario" Type="int" Nullable="false" />
+          <Property Name="id_usuario_operacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fecha" Type="date" />
           <Property Name="estado" Type="varchar" MaxLength="50" />
-          <Property Name="id_detalleoperacion" Type="int" />
+          <Property Name="id_usuario" Type="int" />
         </EntityType>
         <Association Name="FK_billeteras_cuenta">
           <End Role="cuenta" Type="Self.cuenta" Multiplicity="0..1" />
@@ -124,7 +126,7 @@ advertencia 6013: La tabla o vista 'BDCriptoCat.dbo.historial-cotizacion' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_detalle_operacion_moneda">
+        <Association Name="FK_detalle_operacion_moneda2">
           <End Role="moneda" Type="Self.moneda" Multiplicity="0..1" />
           <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -133,18 +135,6 @@ advertencia 6013: La tabla o vista 'BDCriptoCat.dbo.historial-cotizacion' no tie
             </Principal>
             <Dependent Role="detalle_operacion">
               <PropertyRef Name="moneda_usuario_origen" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_detalle_operacion_moneda1">
-          <End Role="moneda" Type="Self.moneda" Multiplicity="0..1" />
-          <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="moneda">
-              <PropertyRef Name="id_moneda" />
-            </Principal>
-            <Dependent Role="detalle_operacion">
-              <PropertyRef Name="moneda_requerida" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -160,24 +150,33 @@ advertencia 6013: La tabla o vista 'BDCriptoCat.dbo.historial-cotizacion' no tie
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-cotizacion', pero no se encuentra la tabla.
-        <Association Name="FK_historial-cotizacion_moneda" />-->
-        <Association Name="FK_usuario-operacion_detalle_operacion">
-          <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="0..1" />
-          <End Role="usuario-operacion" Type="Self.usuario-operacion" Multiplicity="*" />
+        <Association Name="FK_detalle_operacion_usuario-operacion">
+          <End Role="usuario-operacion" Type="Self.usuario-operacion" Multiplicity="0..1" />
+          <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="detalle_operacion">
-              <PropertyRef Name="id_detalleoperacion" />
+            <Principal Role="usuario-operacion">
+              <PropertyRef Name="id_usuario_operacion" />
             </Principal>
-            <Dependent Role="usuario-operacion">
-              <PropertyRef Name="id_detalleoperacion" />
+            <Dependent Role="detalle_operacion">
+              <PropertyRef Name="id_usuario_operacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_usuario-operacion_usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
-          <End Role="usuario-operacion" Type="Self.usuario-operacion" Multiplicity="0..1" />
+        <Association Name="FK_historial-cotizacion_moneda">
+          <End Role="moneda" Type="Self.moneda" Multiplicity="1" />
+          <End Role="historial-cotizacion" Type="Self.historial-cotizacion" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="moneda">
+              <PropertyRef Name="id_moneda" />
+            </Principal>
+            <Dependent Role="historial-cotizacion">
+              <PropertyRef Name="id_historialcotizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuario-operacion_usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="usuario-operacion" Type="Self.usuario-operacion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="usuario">
               <PropertyRef Name="id_usuario" />
@@ -191,6 +190,7 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
           <EntitySet Name="billeteras" EntityType="Self.billeteras" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cuenta" EntityType="Self.cuenta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="detalle_operacion" EntityType="Self.detalle_operacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="historial-cotizacion" EntityType="Self.historial-cotizacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="moneda" EntityType="Self.moneda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipo-operacion" EntityType="Self.tipo-operacion" Schema="dbo" store:Type="Tables" />
@@ -208,11 +208,7 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
             <End Role="usuario" EntitySet="usuario" />
             <End Role="cuenta" EntitySet="cuenta" />
           </AssociationSet>
-          <AssociationSet Name="FK_detalle_operacion_moneda" Association="Self.FK_detalle_operacion_moneda">
-            <End Role="moneda" EntitySet="moneda" />
-            <End Role="detalle_operacion" EntitySet="detalle_operacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_detalle_operacion_moneda1" Association="Self.FK_detalle_operacion_moneda1">
+          <AssociationSet Name="FK_detalle_operacion_moneda2" Association="Self.FK_detalle_operacion_moneda2">
             <End Role="moneda" EntitySet="moneda" />
             <End Role="detalle_operacion" EntitySet="detalle_operacion" />
           </AssociationSet>
@@ -220,11 +216,15 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
             <End Role="tipo-operacion" EntitySet="tipo-operacion" />
             <End Role="detalle_operacion" EntitySet="detalle_operacion" />
           </AssociationSet>
-          <AssociationSet Name="FK_usuario-operacion_detalle_operacion" Association="Self.FK_usuario-operacion_detalle_operacion">
-            <End Role="detalle_operacion" EntitySet="detalle_operacion" />
+          <AssociationSet Name="FK_detalle_operacion_usuario-operacion" Association="Self.FK_detalle_operacion_usuario-operacion">
             <End Role="usuario-operacion" EntitySet="usuario-operacion" />
+            <End Role="detalle_operacion" EntitySet="detalle_operacion" />
           </AssociationSet>
-          <AssociationSet Name="FK_usuario-operacion_usuario" Association="Self.FK_usuario-operacion_usuario">
+          <AssociationSet Name="FK_historial-cotizacion_moneda" Association="Self.FK_historial-cotizacion_moneda">
+            <End Role="moneda" EntitySet="moneda" />
+            <End Role="historial-cotizacion" EntitySet="historial-cotizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuario-operacion_usuario1" Association="Self.FK_usuario-operacion_usuario1">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="usuario-operacion" EntitySet="usuario-operacion" />
           </AssociationSet>
@@ -238,7 +238,7 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
           <Key>
             <PropertyRef Name="id_billetera" />
           </Key>
-          <Property Name="id_billetera" Type="Int32" Nullable="false" />
+          <Property Name="id_billetera" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_cuenta" Type="Int32" />
           <Property Name="id_moneda" Type="Int32" />
           <Property Name="monto_dinero" Type="Decimal" Precision="19" Scale="4" />
@@ -249,8 +249,8 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
           <Key>
             <PropertyRef Name="id_cuenta" />
           </Key>
-          <Property Name="id_cuenta" Type="Int32" Nullable="false" />
-          <Property Name="cvu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cvu" Type="Int32" Nullable="false" />
           <Property Name="id_usuario" Type="Int32" />
           <NavigationProperty Name="billeteras" Relationship="Self.FK_billeteras_cuenta" FromRole="cuenta" ToRole="billeteras" />
           <NavigationProperty Name="usuario" Relationship="Self.FK_cuenta_usuario" FromRole="cuenta" ToRole="usuario" />
@@ -259,18 +259,27 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
           <Key>
             <PropertyRef Name="id_detalleoperacion" />
           </Key>
-          <Property Name="id_detalleoperacion" Type="Int32" Nullable="false" />
+          <Property Name="id_detalleoperacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="moneda_usuario_origen" Type="Int32" />
-          <Property Name="monto_usuario_origen" Type="Int32" />
-          <Property Name="monto_requerido" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="monto_usuario_origen" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="monto_requerido" Type="Double" />
           <Property Name="cbu_usuario" Type="Int32" />
           <Property Name="id_usuario_destino" Type="Int32" />
           <Property Name="id_operacion" Type="Int32" />
           <Property Name="moneda_requerida" Type="Int32" />
-          <NavigationProperty Name="moneda" Relationship="Self.FK_detalle_operacion_moneda" FromRole="detalle_operacion" ToRole="moneda" />
-          <NavigationProperty Name="moneda1" Relationship="Self.FK_detalle_operacion_moneda1" FromRole="detalle_operacion" ToRole="moneda" />
+          <Property Name="id_usuario_operacion" Type="Int32" />
+          <NavigationProperty Name="moneda" Relationship="Self.FK_detalle_operacion_moneda2" FromRole="detalle_operacion" ToRole="moneda" />
           <NavigationProperty Name="tipo_operacion" Relationship="Self.FK_detalle_operacion_tipo_operacion" FromRole="detalle_operacion" ToRole="tipo_operacion" />
-          <NavigationProperty Name="usuario_operacion" Relationship="Self.FK_usuario_operacion_detalle_operacion" FromRole="detalle_operacion" ToRole="usuario_operacion" />
+          <NavigationProperty Name="usuario_operacion" Relationship="Self.FK_detalle_operacion_usuario_operacion" FromRole="detalle_operacion" ToRole="usuario_operacion" />
+        </EntityType>
+        <EntityType Name="historial_cotizacion">
+          <Key>
+            <PropertyRef Name="id_historialcotizacion" />
+          </Key>
+          <Property Name="id_historialcotizacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="valor" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="moneda" Relationship="Self.FK_historial_cotizacion_moneda" FromRole="historial_cotizacion" ToRole="moneda" />
         </EntityType>
         <EntityType Name="moneda">
           <Key>
@@ -280,8 +289,8 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
           <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="id_historialcotizacion" Type="Int32" />
           <NavigationProperty Name="billeteras" Relationship="Self.FK_billeteras_moneda" FromRole="moneda" ToRole="billeteras" />
-          <NavigationProperty Name="detalle_operacion" Relationship="Self.FK_detalle_operacion_moneda" FromRole="moneda" ToRole="detalle_operacion" />
-          <NavigationProperty Name="detalle_operacion1" Relationship="Self.FK_detalle_operacion_moneda1" FromRole="moneda" ToRole="detalle_operacion" />
+          <NavigationProperty Name="detalle_operacion" Relationship="Self.FK_detalle_operacion_moneda2" FromRole="moneda" ToRole="detalle_operacion" />
+          <NavigationProperty Name="historial_cotizacion" Relationship="Self.FK_historial_cotizacion_moneda" FromRole="moneda" ToRole="historial_cotizacion" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -297,7 +306,7 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
           <Key>
             <PropertyRef Name="id_operacion" />
           </Key>
-          <Property Name="id_operacion" Type="Int32" Nullable="false" />
+          <Property Name="id_operacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tipo_operacion1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="detalle_operacion" Relationship="Self.FK_detalle_operacion_tipo_operacion" FromRole="tipo_operacion" ToRole="detalle_operacion" />
         </EntityType>
@@ -313,18 +322,18 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
           <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
           <Property Name="contraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="cuenta" Relationship="Self.FK_cuenta_usuario" FromRole="usuario" ToRole="cuenta" />
-          <NavigationProperty Name="usuario_operacion" Relationship="Self.FK_usuario_operacion_usuario" FromRole="usuario" ToRole="usuario_operacion" />
+          <NavigationProperty Name="usuario_operacion" Relationship="Self.FK_usuario_operacion_usuario1" FromRole="usuario" ToRole="usuario_operacion" />
         </EntityType>
         <EntityType Name="usuario_operacion">
           <Key>
-            <PropertyRef Name="id_usuario" />
+            <PropertyRef Name="id_usuario_operacion" />
           </Key>
-          <Property Name="id_usuario" Type="Int32" Nullable="false" />
+          <Property Name="id_usuario_operacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="id_detalleoperacion" Type="Int32" />
-          <NavigationProperty Name="detalle_operacion" Relationship="Self.FK_usuario_operacion_detalle_operacion" FromRole="usuario_operacion" ToRole="detalle_operacion" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_usuario_operacion_usuario" FromRole="usuario_operacion" ToRole="usuario" />
+          <Property Name="id_usuario" Type="Int32" />
+          <NavigationProperty Name="detalle_operacion" Relationship="Self.FK_detalle_operacion_usuario_operacion" FromRole="usuario_operacion" ToRole="detalle_operacion" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_usuario_operacion_usuario1" FromRole="usuario_operacion" ToRole="usuario" />
         </EntityType>
         <Association Name="FK_billeteras_cuenta">
           <End Role="cuenta" Type="Self.cuenta" Multiplicity="0..1" />
@@ -362,7 +371,7 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_detalle_operacion_moneda">
+        <Association Name="FK_detalle_operacion_moneda2">
           <End Role="moneda" Type="Self.moneda" Multiplicity="0..1" />
           <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -371,18 +380,6 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
             </Principal>
             <Dependent Role="detalle_operacion">
               <PropertyRef Name="moneda_usuario_origen" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_detalle_operacion_moneda1">
-          <End Role="moneda" Type="Self.moneda" Multiplicity="0..1" />
-          <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="moneda">
-              <PropertyRef Name="id_moneda" />
-            </Principal>
-            <Dependent Role="detalle_operacion">
-              <PropertyRef Name="moneda_requerida" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -398,21 +395,33 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_usuario_operacion_detalle_operacion">
-          <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="0..1" />
-          <End Role="usuario_operacion" Type="Self.usuario_operacion" Multiplicity="*" />
+        <Association Name="FK_detalle_operacion_usuario_operacion">
+          <End Role="usuario_operacion" Type="Self.usuario_operacion" Multiplicity="0..1" />
+          <End Role="detalle_operacion" Type="Self.detalle_operacion" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="detalle_operacion">
-              <PropertyRef Name="id_detalleoperacion" />
+            <Principal Role="usuario_operacion">
+              <PropertyRef Name="id_usuario_operacion" />
             </Principal>
-            <Dependent Role="usuario_operacion">
-              <PropertyRef Name="id_detalleoperacion" />
+            <Dependent Role="detalle_operacion">
+              <PropertyRef Name="id_usuario_operacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_usuario_operacion_usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
-          <End Role="usuario_operacion" Type="Self.usuario_operacion" Multiplicity="0..1" />
+        <Association Name="FK_historial_cotizacion_moneda">
+          <End Role="moneda" Type="Self.moneda" Multiplicity="1" />
+          <End Role="historial_cotizacion" Type="Self.historial_cotizacion" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="moneda">
+              <PropertyRef Name="id_moneda" />
+            </Principal>
+            <Dependent Role="historial_cotizacion">
+              <PropertyRef Name="id_historialcotizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuario_operacion_usuario1">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="usuario_operacion" Type="Self.usuario_operacion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="usuario">
               <PropertyRef Name="id_usuario" />
@@ -422,10 +431,11 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BDCriptoCatEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="BDCryptoCatEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="billeteras" EntityType="Self.billeteras" />
           <EntitySet Name="cuenta" EntityType="Self.cuenta" />
           <EntitySet Name="detalle_operacion" EntityType="Self.detalle_operacion" />
+          <EntitySet Name="historial_cotizacion" EntityType="Self.historial_cotizacion" />
           <EntitySet Name="moneda" EntityType="Self.moneda" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="tipo_operacion" EntityType="Self.tipo_operacion" />
@@ -443,11 +453,7 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
             <End Role="usuario" EntitySet="usuario" />
             <End Role="cuenta" EntitySet="cuenta" />
           </AssociationSet>
-          <AssociationSet Name="FK_detalle_operacion_moneda" Association="Self.FK_detalle_operacion_moneda">
-            <End Role="moneda" EntitySet="moneda" />
-            <End Role="detalle_operacion" EntitySet="detalle_operacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_detalle_operacion_moneda1" Association="Self.FK_detalle_operacion_moneda1">
+          <AssociationSet Name="FK_detalle_operacion_moneda2" Association="Self.FK_detalle_operacion_moneda2">
             <End Role="moneda" EntitySet="moneda" />
             <End Role="detalle_operacion" EntitySet="detalle_operacion" />
           </AssociationSet>
@@ -455,11 +461,15 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
             <End Role="tipo_operacion" EntitySet="tipo_operacion" />
             <End Role="detalle_operacion" EntitySet="detalle_operacion" />
           </AssociationSet>
-          <AssociationSet Name="FK_usuario_operacion_detalle_operacion" Association="Self.FK_usuario_operacion_detalle_operacion">
-            <End Role="detalle_operacion" EntitySet="detalle_operacion" />
+          <AssociationSet Name="FK_detalle_operacion_usuario_operacion" Association="Self.FK_detalle_operacion_usuario_operacion">
             <End Role="usuario_operacion" EntitySet="usuario_operacion" />
+            <End Role="detalle_operacion" EntitySet="detalle_operacion" />
           </AssociationSet>
-          <AssociationSet Name="FK_usuario_operacion_usuario" Association="Self.FK_usuario_operacion_usuario">
+          <AssociationSet Name="FK_historial_cotizacion_moneda" Association="Self.FK_historial_cotizacion_moneda">
+            <End Role="moneda" EntitySet="moneda" />
+            <End Role="historial_cotizacion" EntitySet="historial_cotizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuario_operacion_usuario1" Association="Self.FK_usuario_operacion_usuario1">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="usuario_operacion" EntitySet="usuario_operacion" />
           </AssociationSet>
@@ -469,7 +479,7 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BDCriptoCatModelStoreContainer" CdmEntityContainer="BDCriptoCatEntities">
+        <EntityContainerMapping StorageEntityContainer="BDCriptoCatModelStoreContainer" CdmEntityContainer="BDCryptoCatEntities">
           <EntitySetMapping Name="billeteras">
             <EntityTypeMapping TypeName="BDCriptoCatModel.billeteras">
               <MappingFragment StoreEntitySet="billeteras">
@@ -500,6 +510,16 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
                 <ScalarProperty Name="id_usuario_destino" ColumnName="id_usuario_destino" />
                 <ScalarProperty Name="id_operacion" ColumnName="id_operacion" />
                 <ScalarProperty Name="moneda_requerida" ColumnName="moneda_requerida" />
+                <ScalarProperty Name="id_usuario_operacion" ColumnName="id_usuario_operacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="historial_cotizacion">
+            <EntityTypeMapping TypeName="BDCriptoCatModel.historial_cotizacion">
+              <MappingFragment StoreEntitySet="historial-cotizacion">
+                <ScalarProperty Name="id_historialcotizacion" ColumnName="id_historialcotizacion" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="valor" ColumnName="valor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -547,10 +567,10 @@ error 6004: Una relación hace referencia a la tabla 'BDCriptoCat.dbo.historial-
           <EntitySetMapping Name="usuario_operacion">
             <EntityTypeMapping TypeName="BDCriptoCatModel.usuario_operacion">
               <MappingFragment StoreEntitySet="usuario-operacion">
-                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="id_usuario_operacion" ColumnName="id_usuario_operacion" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="id_detalleoperacion" ColumnName="id_detalleoperacion" />
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

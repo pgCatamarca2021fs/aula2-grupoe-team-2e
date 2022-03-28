@@ -11,11 +11,11 @@ using RouteAttribute = System.Web.Http.RouteAttribute;
 
 namespace criptoCatBackend.Controllers
 {
-    [EnableCors( origins: "http://localhost:4200" , headers: "*" , methods: "*" )]
+    [EnableCors( origins: "*" , headers: "*" , methods: "*" )]
     public class UsuarioController : ApiController
     {
 
-        BDCriptoCatEntities db = new BDCriptoCatEntities();
+        BDCryptoCatEntities db = new BDCryptoCatEntities();
 
         // GET api/<controller>
         public IEnumerable<usuario> Get()
@@ -33,14 +33,14 @@ namespace criptoCatBackend.Controllers
 
         public class Login
         {
-            public string email { get; set; }
-            public string contrasena { get; set; }
+            public string Email { get; set; }
+            public string Contrasena { get; set; }
         }
 
         [Route("api/Usuario/Login")]
         public usuario Post([FromBody] Login datosEntrada)
         {
-            usuario oUsuario = db.usuario.Where(u => u.email == datosEntrada.email && u.contraseña == datosEntrada.contrasena).FirstOrDefault();
+            usuario oUsuario = db.usuario.Where(u => u.email == datosEntrada.Email && u.contraseña == datosEntrada.Contrasena).FirstOrDefault();
             return oUsuario;
         }
 
