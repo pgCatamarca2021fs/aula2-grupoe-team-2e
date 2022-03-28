@@ -13,10 +13,10 @@ namespace criptoCatBackend.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BDCriptoCatEntities : DbContext
+    public partial class BDCryptoCatEntities : DbContext
     {
-        public BDCriptoCatEntities()
-            : base("name=BDCriptoCatEntities")
+        public BDCryptoCatEntities()
+            : base("name=BDCryptoCatEntities")
         {
         }
     
@@ -28,6 +28,7 @@ namespace criptoCatBackend.Models
         public virtual DbSet<billeteras> billeteras { get; set; }
         public virtual DbSet<cuenta> cuenta { get; set; }
         public virtual DbSet<detalle_operacion> detalle_operacion { get; set; }
+        public virtual DbSet<historial_cotizacion> historial_cotizacion { get; set; }
         public virtual DbSet<moneda> moneda { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tipo_operacion> tipo_operacion { get; set; }

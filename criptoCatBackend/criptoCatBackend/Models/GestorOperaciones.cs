@@ -12,7 +12,7 @@ namespace criptoCatBackend.Models
     {
         string conectionString = ConfigurationManager.ConnectionStrings["BDCriptoCat"].ToString(); //cadena de conexión
 
-        BDCriptoCatEntities db = new BDCriptoCatEntities();
+        BDCryptoCatEntities db = new BDCryptoCatEntities();
 
         public void CrearOperacion(int id , FormOperacion datosEntrada )
         {

@@ -14,12 +14,19 @@ namespace criptoCatBackend.Models
     
     public partial class usuario_operacion
     {
-        public int id_usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public usuario_operacion()
+        {
+            this.detalle_operacion = new HashSet<detalle_operacion>();
+        }
+    
+        public int id_usuario_operacion { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
         public string estado { get; set; }
-        public Nullable<int> id_detalleoperacion { get; set; }
+        public Nullable<int> id_usuario { get; set; }
     
-        public virtual detalle_operacion detalle_operacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<detalle_operacion> detalle_operacion { get; set; }
         public virtual usuario usuario { get; set; }
     }
 }

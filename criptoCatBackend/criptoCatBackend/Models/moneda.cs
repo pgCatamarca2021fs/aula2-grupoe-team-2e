@@ -19,7 +19,6 @@ namespace criptoCatBackend.Models
         {
             this.billeteras = new HashSet<billeteras>();
             this.detalle_operacion = new HashSet<detalle_operacion>();
-            this.detalle_operacion1 = new HashSet<detalle_operacion>();
         }
     
         public int id_moneda { get; set; }
@@ -30,7 +29,6 @@ namespace criptoCatBackend.Models
         public virtual ICollection<billeteras> billeteras { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<detalle_operacion> detalle_operacion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detalle_operacion> detalle_operacion1 { get; set; }
+        public virtual historial_cotizacion historial_cotizacion { get; set; }
     }
 }
