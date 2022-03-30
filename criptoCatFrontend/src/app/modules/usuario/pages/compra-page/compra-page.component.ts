@@ -36,6 +36,7 @@ export class CompraPageComponent implements OnInit {
   }
 
   constructor( private apiDatosDeCryptosServices:ApiDatosDeCryptosService, private cacheService: CacheService) { }
+  pesosaldoarg:number =0;
   ngOnInit(){
     
     console.log(this.isDefined());
@@ -43,6 +44,7 @@ export class CompraPageComponent implements OnInit {
       .subscribe( response => {
         this.coins1 = response;
       });
+    this.pesosaldoarg= this.cacheService.usuarioCache.cuenta[0].billeteras[0].monto_dinero;
   }
 
   onComprar = () =>{

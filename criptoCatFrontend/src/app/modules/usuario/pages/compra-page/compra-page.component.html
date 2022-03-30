@@ -36,7 +36,7 @@
                         <h3>Pesos a Invertir: </h3>
                     </td>
                     <td>
-                        <tr><label for="Name">Click me</label><br>
+                        <tr><label for="Name">${{pesosaldoarg}}</label><br>
                             <input class="pesos" type="number" min="0" name="cantidadPesos" [(ngModel)]="usuarioCompra.cantidadPesos" (keyup)="convertionCrypto()" [disabled]="!isDefined()"></tr>
                     </td>
                 </tr>

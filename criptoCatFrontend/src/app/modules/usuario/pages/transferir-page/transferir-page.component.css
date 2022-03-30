@@ -55,8 +55,8 @@ td {
     border-radius: 15px;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input[name=cantidadCrito]::-webkit-inner-spin-button,
+input[name=cantidadCrito]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
     -moz-appearance: textfield;
