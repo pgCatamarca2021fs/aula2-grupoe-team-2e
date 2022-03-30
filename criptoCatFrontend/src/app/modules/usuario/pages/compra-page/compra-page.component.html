@@ -37,14 +37,14 @@
                     </td>
                     <td>
                         <tr><label for="Name">Click me</label><br>
-                            <input class="pesos" type="number" name="cantidadPesos" [(ngModel)]="usuarioCompra.cantidadPesos" (keyup)="convertionCrypto()" [disabled]="!isDefined()"></tr>
+                            <input class="pesos" type="number" min="0" name="cantidadPesos" [(ngModel)]="usuarioCompra.cantidadPesos" (keyup)="convertionCrypto()" [disabled]="!isDefined()"></tr>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <h3>Cantidad en criptomonedas</h3>
                     </td>
-                    <td> <input class="pesos" type="number" name="cantidadCrito" [(ngModel)]="usuarioCompra.cantidadCripto" [disabled]="!isDefined()">
+                    <td> <input class="pesos" type="number" min="0" name="cantidadCrito" [(ngModel)]="usuarioCompra.cantidadCripto" [disabled]="!isDefined()">
                     </td>
                 </tr>
                 <tr>
