@@ -43,12 +43,12 @@ namespace criptoCatBackend.Models
                 if (oBilleteraCripto == null)
                 {
                     SqlCommand commandBilletera = connection.CreateCommand();
-                    commandBilletera.CommandText = "crearBilletera";
+                    commandBilletera.CommandText = "crearBilleteraCripto";
                     commandBilletera.CommandType = CommandType.StoredProcedure;
                     commandBilletera.Parameters.Add(new SqlParameter("@idCuenta", oCuenta.id_cuenta));
-                    commandBilletera.Parameters.Add(new SqlParameter("@idMoneda", oBilleteraCripto.moneda.id_moneda));
+                    commandBilletera.Parameters.Add(new SqlParameter("@tipoMoneda", datosEntrada.coinSelected.id));
                     commandBilletera.Parameters.Add(new SqlParameter("@cantidadCripto", datosEntrada.cantidadCripto));
-                    command2.ExecuteNonQuery();         
+                    commandBilletera.ExecuteNonQuery();
                 }
                 else
                 {
