@@ -20,14 +20,11 @@ ScrumMaster:
 Gabriel Osmar Pontifice.
 
 Desarrolladores frontend: 
-Melani Micaela Monje,
+Melani Micaela Monje, Mario Abel Maturano.
 
 Desarrolladores fullstack o ayudantes:
 Lionel Nicolás Diez Gómez,
 Pablo Nicolás Uriza Saris.
-
-Desarrollador backend:
-Mario Abel Maturano.
 
 --------
 ## Objetivos
