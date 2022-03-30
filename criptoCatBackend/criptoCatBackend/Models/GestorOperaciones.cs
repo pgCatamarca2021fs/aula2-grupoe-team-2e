@@ -83,9 +83,9 @@ namespace criptoCatBackend.Models
                 command.Parameters.Add(new SqlParameter("@id_cuenta", oCuentados.id_cuenta));
                 command.Parameters.Add(new SqlParameter("@id_tipo", oBilleteraCripto.moneda.id_moneda));
                 command.Parameters.Add(new SqlParameter("@monto_dinero", datosEntrada.cantidadPesos));// es un monto en pesos de la entrada 
+                command.Parameters.Add(new SqlParameter("@cantidad_cripto", datosEntrada.cantidadCripto));
                 command.ExecuteNonQuery();
 
-                connection.Open();
                 SqlCommand commanddos = connection.CreateCommand();
                 commanddos.CommandText = "crearOperacion";
                 commanddos.CommandType = CommandType.StoredProcedure;

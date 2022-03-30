@@ -1,12 +1,16 @@
 
 import { Component, OnInit } from '@angular/core';
-import { Billetera, Cuenta } from 'src/app/shared/interfaces/usuarioCache.interface';
+import { Billetera, Cuenta, UsuarioCache } from 'src/app/shared/interfaces/usuarioCache.interface';
 import { CacheService } from 'src/app/shared/services/cache.service';
 import Coin from '../../interfaces/interfaceCoin';
 import {HttpClient} from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import FormOperacion from '../../interfaces/interfaceCompra';
 import { MonedaEjemplo } from 'src/app/shared/class/monedaEjemplo';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { VentaUsuarioService } from '../../services/ventaUsuario.service';
+
 
 @Component({
   selector: 'app-venta-page',
@@ -35,7 +39,11 @@ export class VentaPageComponent implements OnInit {
   }
   Selected=false;
   constructor( private cacheService: CacheService, 
-     private http: HttpClient) { }
+     private http: HttpClient,
+     private router:Router,
+     private authService:AuthService,
+     private ventausuarioservice:VentaUsuarioService
+     ) { }
     id_usuarios: any;
   cambiar(Cantidad:number, buscarTexto?:string):void{
     this.filtro = 
@@ -57,24 +65,42 @@ export class VentaPageComponent implements OnInit {
     this.Total = this.myValue * this.valorDeCadaCriptoEnPesos; 
  }
 
- enviarVenta(){  
-  this.usuarioVenta = {
-    coinSelected: this.filtro[0],
-    cantidadCripto: this.myValue,
-    cantidadPesos : this.Total,
-    tipoOperacion : 'VENTA'
-
-  }
- console.log(this.usuarioVenta);
- }
-  ngOnInit() {
-    this.billeteras = this.cacheService.usuarioCache.cuenta[0].billeteras;
-    this.http.get<Coin[]>('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
-    .subscribe( 
-      (res)=> {
-        this.coins = res;
+ ngOnInit() {
+   this.billeteras = this.cacheService.usuarioCache.cuenta[0].billeteras;
+   this.http.get<Coin[]>('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+   .subscribe( 
+     (res)=> {
+       this.coins = res;
       }, 
-    (err) => console.log(err));
+      (err) => console.log(err));
+  }
+  enviarVenta = () =>{
+    this.usuarioVenta = {
+      coinSelected: this.filtro[0],
+      cantidadCripto: this.myValue,
+      cantidadPesos : this.Total,
+      tipoOperacion : 'VENTA'
+  
+    }
+    console.log(this.usuarioVenta);
+    const usuario = this.cacheService.getDevolver("usuario");
+    if (!usuario?.id_usuario && !this.cacheService.getDevolver("usuario")) {
+      return
+    }
+
+    this.ventausuarioservice.crearVenta( usuario?.id_usuario!, this.usuarioVenta).subscribe();
+
+    alert(`Felicidades ${usuario?.nombre} por Vender  ${this.usuarioVenta.cantidadCripto} ${this.usuarioVenta.coinSelected?.id}`);
+    this.authService.enviarCredenciales(usuario?.email! , usuario?.contraseña!)
+      .subscribe( (data: UsuarioCache) =>{
+        if (data == null || data == undefined) {
+          console.log("Ocurrio un error en la compra");
+          return;
+        }
+        this.cacheService.set("usuario", data);
+      })
+    
+    this.router.navigate(['/usuario/billetera']);
   }
 
 }
